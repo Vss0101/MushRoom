@@ -1,0 +1,9 @@
+目录结构:
+    Audio：媒体文件
+    Characters：人物
+    Fonts：字体
+    Images：图片
+    Materials：素材
+    Perfabs：预制体
+    Scenes：场景
+    Scripts：脚本代码
