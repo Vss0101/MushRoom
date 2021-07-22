@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\MoveBall.cs" />
+    <Compile Include="Assets\Scripts\TableBar.cs" />
+    <Compile Include="Assets\Scripts\TableBarEditor.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/bpProjectForA/bpproject/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
