@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class StartButton : MonoBehaviour
 {
 
-    public GameObject panel = new GameObject();
-
+    public GameObject panel;
+        //= new GameObject();
+    public Button button;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        button.onClick.AddListener(delegate() { OnClick(); });
     }
 
     public void OnClick()
