@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\MoveBall.cs" />
+    <Compile Include="Assets\Scripts\StartButton.cs" />
     <Compile Include="Assets\Scripts\TableBar.cs" />
     <Compile Include="Assets\Scripts\TableBarEditor.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">

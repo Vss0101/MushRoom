@@ -7,4 +7,3 @@
     Perfabs：预制体
     Scenes：场景
     Scripts：脚本代码
-    test
