@@ -9,7 +9,6 @@ public class ShowUI : MonoBehaviour
     public Button character;
     public Button setting;
     public Button up;
-    Tweener twe;
 
     // Start is called before the first frame update
     void Start()
