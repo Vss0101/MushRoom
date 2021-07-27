@@ -9,69 +9,71 @@ public class SlotRun : MonoBehaviour
     public Image pointASub;
     public Image pointBSub;
     public Image pointCSub;
-   // public GameObject centerObject;
-    //public Vector2 centerPosition;
-    public float speed;
+    public float speedA;
+    public float speedB;
+    public float speedC;
     public Button run;
     public bool stop;
-   // public GameObject pointCForWater;
     public GameObject pointA;
     public GameObject pointB;
     public GameObject pointC;
     public Image pointCForWater;
+    public float angel;
+    public int time;
+    public int[] rewards;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        pointA.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
+        pointB.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
+        pointC.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
+        rewards = new int[4] { 45, 135, 225, 315 };
         stop = false;
-        //centerPosition = centerObject.transform.position;
-        speed = 30;
+        speedA = 30;
+        speedB = 30;
+        speedC = 30;
+        time = 3;
         run.onClick.AddListener(delegate () { OnClick(); });
     }
 
     public void OnClick()
     {
-        speed = 200;
-        //stop = true;
-        // stop = true;
-        // SlotStop();
-        // Invoke("ReverseStopFlag", 3f);
-        pointC.transform.DORotate(new Vector3(0, 0, 135 +360*2),10,RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
-        
-        pointB.transform.DORotate(new Vector3(0, 0, 135), 2).SetEase(Ease.OutQuad);
-        pointA.transform.DORotate(new Vector3(0, 0, 135), 2).SetEase(Ease.OutQuad);
+         stop = true;
+        SlotStop();
+    }
 
+    public int GetRandom()
+    {
+        return Random.Range(0, 4);
     }
 
     public void ReverseStopFlag()
     {
         stop = !stop;
+        speedA = Random.Range(10,100);
+        speedB = Random.Range(10, 100);
+        speedC = Random.Range(10, 100);
     }
 
     public void SlotStop()
     {
-        float position = pointCForWater.rectTransform.position.y - pointCSub.rectTransform.position.y;
-        Debug.Log(position);
-        if(position <= 200f) {
-            
-        }
-
+        pointC.transform.DORotate(new Vector3(0, 0, rewards[GetRandom()] - pointC.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
+        pointA.transform.DORotate(new Vector3(0, 0, rewards[GetRandom()] - pointA.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
+        pointB.transform.DORotate(new Vector3(0, 0, rewards[GetRandom()] - pointB.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
+        Invoke("ReverseStopFlag", time+1);
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        //pointA.transform.Rotate( Vector3.forward, speed * Time.deltaTime);
-        //pointB.transform.Rotate( Vector3.forward, speed * Time.deltaTime);
-        // pointC.transform.Rotate( Vector3.forward, speed * Time.deltaTime);
-
-
-
-        if (stop)
+        if(stop == false)
         {
-            SlotStop();
+            pointA.transform.Rotate(Vector3.forward, speedA * Time.deltaTime);
+            pointB.transform.Rotate(Vector3.forward, speedB * Time.deltaTime);
+            pointC.transform.Rotate(Vector3.forward, speedC * Time.deltaTime);
         }
+
     }
 }
