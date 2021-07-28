@@ -12,6 +12,9 @@ public class SlotRun : MonoBehaviour
     public float speedA;
     public float speedB;
     public float speedC;
+    public int rewardA;
+    public int rewardB;
+    public int rewardC;
     public Button run;
     public bool stop;
     public GameObject pointA;
@@ -40,8 +43,12 @@ public class SlotRun : MonoBehaviour
 
     public void OnClick()
     {
-         stop = true;
+        speedA = 0;
+        speedB = 0;
+        speedC = 0;
         SlotStop();
+        run.enabled = false;
+        
     }
 
     public int GetRandom()
@@ -51,29 +58,62 @@ public class SlotRun : MonoBehaviour
 
     public void ReverseStopFlag()
     {
-        stop = !stop;
-        speedA = Random.Range(10,100);
+        speedA = Random.Range(10, 100);
         speedB = Random.Range(10, 100);
         speedC = Random.Range(10, 100);
+        run.enabled = true;
+    }
+
+    public void GetRewards(int rewardA,int rewardB,int rewardC) { 
+        if(rewardA == rewardB && rewardC == rewardA)
+        {
+            GetBigReward(rewardA);
+        }else if(rewardA == rewardB || rewardA == rewardC || rewardB == rewardC)
+        {
+            GetMiddleReward();
+        }
+        else
+        {
+            GetSmallReward();
+        }
+    }
+
+    public void GetMiddleReward()
+    {
+
+    }
+
+    public void GetSmallReward()
+    {
+
+    }
+
+    public void GetBigReward(int reward)
+    {
+
     }
 
     public void SlotStop()
     {
-        pointC.transform.DORotate(new Vector3(0, 0, rewards[GetRandom()] - pointC.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
-        pointA.transform.DORotate(new Vector3(0, 0, rewards[GetRandom()] - pointA.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
-        pointB.transform.DORotate(new Vector3(0, 0, rewards[GetRandom()] - pointB.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
-        Invoke("ReverseStopFlag", time+1);
+        rewardA = GetRandom();
+        rewardB = GetRandom();
+        rewardC = GetRandom();
+        Tween t = pointC.transform.DORotate(new Vector3(0, 0, rewards[rewardA] - pointC.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
+        t.OnComplete(
+            () =>
+            {
+                ReverseStopFlag();
+            }
+        );
+        pointA.transform.DORotate(new Vector3(0, 0, rewards[rewardB] - pointA.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
+        pointB.transform.DORotate(new Vector3(0, 0, rewards[rewardC] - pointB.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(stop == false)
-        {
             pointA.transform.Rotate(Vector3.forward, speedA * Time.deltaTime);
             pointB.transform.Rotate(Vector3.forward, speedB * Time.deltaTime);
             pointC.transform.Rotate(Vector3.forward, speedC * Time.deltaTime);
-        }
-
     }
 }

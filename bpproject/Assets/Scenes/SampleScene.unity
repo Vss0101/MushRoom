@@ -999,6 +999,9 @@ MonoBehaviour:
   speedA: 0
   speedB: 0
   speedC: 0
+  rewardA: 0
+  rewardB: 0
+  rewardC: 0
   run: {fileID: 463207197}
   stop: 0
   pointA: {fileID: 1431768319}
@@ -2191,6 +2194,7 @@ GameObject:
   - component: {fileID: 1631055971}
   - component: {fileID: 1631055973}
   - component: {fileID: 1631055972}
+  - component: {fileID: 1631055975}
   m_Layer: 5
   m_Name: PointCSub
   m_TagString: Untagged
@@ -2252,6 +2256,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631055970}
   m_CullTransparentMesh: 0
+--- !u!225 &1631055975
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631055970}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1671750439
 GameObject:
   m_ObjectHideFlags: 0
@@ -3081,7 +3097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2117887792
 RectTransform:
   m_ObjectHideFlags: 0
