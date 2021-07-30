@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bezier.cs" />
+    <Compile Include="Assets\Scripts\GetResource.cs" />
     <Compile Include="Assets\Scripts\HaloControl.cs" />
     <Compile Include="Assets\Scripts\MoveBall.cs" />
     <Compile Include="Assets\Scripts\ShowUI.cs" />

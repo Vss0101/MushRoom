@@ -24,7 +24,7 @@ public class SlotRun : MonoBehaviour
     public float angel;
     public int time;
     public int[] rewards;
-    public Image resource;
+    public GameObject resource;
 
 
     // Start is called before the first frame update
@@ -94,8 +94,8 @@ public class SlotRun : MonoBehaviour
     {
         for(int i = 0; i < 5; i++)
         {
-
-            Image.Instantiate(resource, new Vector3(pointCForWater.transform.position.x + Random.Range(0, 50), pointCForWater.transform.position.y + Random.Range(0, 50), 0), Quaternion.identity);
+            GameObject go =GameObject.Instantiate(resource, new Vector3(pointCForWater.transform.position.x + Random.Range(0, 50), pointCForWater.transform.position.y + Random.Range(0, 50), 0), Quaternion.identity);
+            go.transform.SetParent(pointCForWater.transform);
         }
     }
 
