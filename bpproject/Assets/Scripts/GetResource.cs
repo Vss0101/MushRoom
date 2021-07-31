@@ -10,7 +10,9 @@ public class GetResource : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Tween t = gameObject.transform.DOMove(new Vector3(0,0,0),5);
+        
+        //TweenUtils.BezierTo
+        Tween t = gameObject.transform.DOMove(new Vector3(0,0,0),3).SetEase(Ease.InSine);
         t.OnComplete(
             () =>
             {
