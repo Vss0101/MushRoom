@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HaloControl : MonoBehaviour
 {
-
+    public bool run;
     private CanvasGroup moonCanvasGroup;
     private float flashSpeed = 1.0f;//光晕闪动速度
     private bool isOn = true;
@@ -14,22 +14,33 @@ public class HaloControl : MonoBehaviour
     void Start()
     {
         moonCanvasGroup = GetComponent<CanvasGroup>();
+        run = true;
+       
+    }
+
+    void Stop()
+    {
+        run = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (moonCanvasGroup.alpha < maxAlpha && isOn)
+        if(run == true)
         {
-            moonCanvasGroup.alpha += flashSpeed * Time.deltaTime;
-        }
-        else
-        {
-            isOn = false;
-            moonCanvasGroup.alpha -= flashSpeed * Time.deltaTime;
-            if (moonCanvasGroup.alpha < minAlpha)
+            Invoke("Stop", 3);
+            if (moonCanvasGroup.alpha < maxAlpha && isOn)
             {
-                isOn = true;
+                moonCanvasGroup.alpha += flashSpeed * Time.deltaTime;
+            }
+            else
+            {
+                isOn = false;
+                moonCanvasGroup.alpha -= flashSpeed * Time.deltaTime;
+                if (moonCanvasGroup.alpha < minAlpha)
+                {
+                    isOn = true;
+                }
             }
         }
     }

@@ -20,11 +20,15 @@ public class SlotRun : MonoBehaviour
     public GameObject pointA;
     public GameObject pointB;
     public GameObject pointC;
-    public Image pointCForWater;
+    public GameObject pointForWater;
+    public GameObject pointForFire;
+    public GameObject pointForWind;
+    public GameObject pointForLand;
     public float angel;
     public int time;
     public int[] rewards;
     public GameObject resource;
+    public GameObject[] rewardsPosition;
 
 
     // Start is called before the first frame update
@@ -34,6 +38,7 @@ public class SlotRun : MonoBehaviour
         pointB.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
         pointC.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
         rewards = new int[4] { 45, 135, 225, 315 };
+        rewardsPosition = new GameObject[4] { pointForLand,pointForWater,pointForFire,pointForWind };
         stop = false;
         speedA = 30;
         speedB = 30;
@@ -71,8 +76,8 @@ public class SlotRun : MonoBehaviour
             GetBigReward(rewardA);
         }else if(rewardA == rewardB || rewardA == rewardC || rewardB == rewardC)
         {
-            GetBigReward(rewardA);
-            GetMiddleReward();
+            int reward = rewardA == rewardB ? rewardA :rewardC;
+            GetMiddleReward(reward);
         }
         else
         {
@@ -80,9 +85,15 @@ public class SlotRun : MonoBehaviour
         }
     }
 
-    public void GetMiddleReward()
+    public void GetMiddleReward(int reward)
     {
-
+        for (int i = 0; i < 5; i++)
+        {
+            float positionX = rewardsPosition[reward].transform.position.x;
+            float positionY = rewardsPosition[reward].transform.position.y;
+            GameObject go = GameObject.Instantiate(resource, new Vector3(positionX + Random.Range(0, 50), positionY + Random.Range(0, 50), 0), Quaternion.identity);
+            go.transform.SetParent(rewardsPosition[reward].transform);
+        }
     }
 
     public void GetSmallReward()
@@ -92,11 +103,16 @@ public class SlotRun : MonoBehaviour
 
     public void GetBigReward(int reward)
     {
-        for(int i = 0; i < 5; i++)
+        //Debug.Log(reward);
+        rewardsPosition[reward].GetComponent<HaloControl>().run = true;
+        for (int i = 0; i < 5; i++)
         {
-            GameObject go =GameObject.Instantiate(resource, new Vector3(pointCForWater.transform.position.x + Random.Range(0, 50), pointCForWater.transform.position.y + Random.Range(0, 50), 0), Quaternion.identity);
-            go.transform.SetParent(pointCForWater.transform);
+            float positionX= rewardsPosition[reward].transform.position.x;
+            float positionY = rewardsPosition[reward].transform.position.y;
+            GameObject go =GameObject.Instantiate(resource, new Vector3(positionX + Random.Range(0, 50), positionY + Random.Range(0, 50), 0), Quaternion.identity);
+            go.transform.SetParent(rewardsPosition[reward].transform);
         }
+        
     }
 
     public void SlotStop()
