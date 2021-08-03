@@ -90,6 +90,8 @@ public class SlotRun : MonoBehaviour
 
     public void GetMiddleReward(int reward)
     {
+        //调用闪烁函数
+        rewardsPosition[reward].GetComponent<HaloControl>().run = true;
         for (int i = 0; i < 5; i++)
         {
             float positionX = rewardsPosition[reward].transform.position.x;
@@ -133,7 +135,7 @@ public class SlotRun : MonoBehaviour
                 //等动画播完后调用拿奖函数
                 GetRewards(rewardA, rewardB, rewardC);
                 //并让小球继续转动
-                ReverseStopFlag();
+                Invoke("ReverseStopFlag", 0.5f);
             }
         );
         pointA.transform.DORotate(new Vector3(0, 0, rewards[rewardB] - pointA.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);

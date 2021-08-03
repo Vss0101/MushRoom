@@ -14,12 +14,12 @@ public class HaloControl : MonoBehaviour
     void Start()
     {
         moonCanvasGroup = GetComponent<CanvasGroup>();
-        run = true;
        
     }
 
     void Stop()
     {
+        moonCanvasGroup.alpha = 1;
         run = false;
     }
 

@@ -2410,7 +2410,6 @@ MonoBehaviour:
   rewardB: 0
   rewardC: 0
   run: {fileID: 8460672605208368732}
-  stop: 0
   pointA: {fileID: 8460672604038898110}
   pointB: {fileID: 8460672604760352536}
   pointC: {fileID: 8460672604775536192}
@@ -2418,7 +2417,6 @@ MonoBehaviour:
   pointForFire: {fileID: 1519801294}
   pointForWind: {fileID: 1263902459}
   pointForLand: {fileID: 187750428}
-  angel: 0
   time: 0
   rewards: 
   resource: {fileID: 3362938916205924578, guid: c4bd407a0a5e45f47ab1108d2466549f,
