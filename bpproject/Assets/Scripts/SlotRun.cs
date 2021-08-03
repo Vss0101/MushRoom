@@ -28,6 +28,9 @@ public class SlotRun : MonoBehaviour
     public GameObject resource;//弹出的奖励图标
     public GameObject[] rewardsPosition;//奖励列表对应的位置
 
+    public int tili;//体力数据
+    public Text Tilitext;//显示体力
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +47,9 @@ public class SlotRun : MonoBehaviour
         speedB = 30;
         speedC = 30;
         time = 3;
+
+        tili = 2;
+        Tilitext.text = tili.ToString();
         run.onClick.AddListener(delegate () { OnClick(); });
     }
 
@@ -53,7 +59,15 @@ public class SlotRun : MonoBehaviour
         speedA = 0;
         speedB = 0;
         speedC = 0;
-        SlotGo();
+
+        if(tili<=0){
+
+        }
+        else{
+            tili = tili - 1;
+            Tilitext.text = tili.ToString();
+            SlotGo();
+        }
         //禁用祈祷按钮，防止玩家疯狂按
         run.enabled = false;
         
