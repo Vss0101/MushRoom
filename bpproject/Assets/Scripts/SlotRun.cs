@@ -6,40 +6,40 @@ using UnityEngine.UI;
 
 public class SlotRun : MonoBehaviour
 {
-    public Image pointASub;
+    public Image pointASub;//小球
     public Image pointBSub;
     public Image pointCSub;
-    public float speedA;
+    public float speedA;//控制A球速度
     public float speedB;
     public float speedC;
-    public int rewardA;
+    public int rewardA;//A球获得的奖励
     public int rewardB;
     public int rewardC;
-    public Button run;
-    public bool stop;
-    public GameObject pointA;
+    public Button run;//祈祷按钮
+    public GameObject pointA;//小球父对象，控制转动角度
     public GameObject pointB;
     public GameObject pointC;
-    public GameObject pointForWater;
+    public GameObject pointForWater;//奖励所在位置
     public GameObject pointForFire;
     public GameObject pointForWind;
     public GameObject pointForLand;
-    public float angel;
     public int time;
-    public int[] rewards;
-    public GameObject resource;
-    public GameObject[] rewardsPosition;
+    public int[] rewards;//奖励列表
+    public GameObject resource;//弹出的奖励图标
+    public GameObject[] rewardsPosition;//奖励列表对应的位置
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //设置小球初始位置
         pointA.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
         pointB.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
         pointC.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
+        //设置奖励列表以及奖励对应图标
         rewards = new int[4] { 45, 135, 225, 315 };
         rewardsPosition = new GameObject[4] { pointForLand,pointForWater,pointForFire,pointForWind };
-        stop = false;
+        //小球初始速度
         speedA = 30;
         speedB = 30;
         speedC = 30;
@@ -47,12 +47,14 @@ public class SlotRun : MonoBehaviour
         run.onClick.AddListener(delegate () { OnClick(); });
     }
 
+    //点击按钮后开始调用老虎机转动函数
     public void OnClick()
     {
         speedA = 0;
         speedB = 0;
         speedC = 0;
-        SlotStop();
+        SlotGo();
+        //禁用祈祷按钮，防止玩家疯狂按
         run.enabled = false;
         
     }
@@ -71,6 +73,7 @@ public class SlotRun : MonoBehaviour
     }
 
     public void GetRewards(int rewardA,int rewardB,int rewardC) { 
+        //通过三个球的Reward是否相同来调用对应的发奖函数
         if(rewardA == rewardB && rewardC == rewardA)
         {
             GetBigReward(rewardA);
@@ -103,8 +106,9 @@ public class SlotRun : MonoBehaviour
 
     public void GetBigReward(int reward)
     {
-        //Debug.Log(reward);
+        //调用闪烁函数
         rewardsPosition[reward].GetComponent<HaloControl>().run = true;
+        //在对应奖励位置附近生成5个奖励图标，每个奖励图标自身有代码可以控制飞到某个位置自行销毁
         for (int i = 0; i < 5; i++)
         {
             float positionX= rewardsPosition[reward].transform.position.x;
@@ -115,16 +119,20 @@ public class SlotRun : MonoBehaviour
         
     }
 
-    public void SlotStop()
+    public void SlotGo()
     {
+        //让小球分别获得奖励
         rewardA = GetRandom();
         rewardB = GetRandom();
         rewardC = GetRandom();
+        //确定小球停留位置，并设置其动画效果
         Tween t = pointC.transform.DORotate(new Vector3(0, 0, rewards[rewardA] - pointC.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
         t.OnComplete(
             () =>
             {
+                //等动画播完后调用拿奖函数
                 GetRewards(rewardA, rewardB, rewardC);
+                //并让小球继续转动
                 ReverseStopFlag();
             }
         );
@@ -135,8 +143,9 @@ public class SlotRun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            pointA.transform.Rotate(Vector3.forward, speedA * Time.deltaTime);
-            pointB.transform.Rotate(Vector3.forward, speedB * Time.deltaTime);
-            pointC.transform.Rotate(Vector3.forward, speedC * Time.deltaTime);
+        //小球根据不停转动
+        pointA.transform.Rotate(Vector3.forward, speedA * Time.deltaTime);
+        pointB.transform.Rotate(Vector3.forward, speedB * Time.deltaTime);
+        pointC.transform.Rotate(Vector3.forward, speedC * Time.deltaTime);
     }
 }
