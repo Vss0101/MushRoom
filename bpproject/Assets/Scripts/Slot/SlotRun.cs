@@ -56,15 +56,14 @@ public class SlotRun : MonoBehaviour
     //点击按钮后开始调用老虎机转动函数
     public void OnClick()
     {
-        speedA = 0;
-        speedB = 0;
-        speedC = 0;
-
         if(tili<=0){
-
+            run.enabled = false;
         }
         else{
             tili = tili - 1;
+            speedA = 0;
+            speedB = 0;
+            speedC = 0;
             Tilitext.text = tili.ToString();
             SlotGo();
         }
