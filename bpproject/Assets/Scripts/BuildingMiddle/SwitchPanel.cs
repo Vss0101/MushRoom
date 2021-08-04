@@ -3,29 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonDown : MonoBehaviour
+public class SwitchPanel : MonoBehaviour
 {
+
     public Button down;
     public GameObject switchBackround;
-    public GameObject middlePanel;
+    public GameObject nextPanel;
+    public GameObject thisPanel;
     // Start is called before the first frame update
     void Start()
     {
         down.onClick.AddListener(delegate () { OnClick(); });
     }
 
+
     public void OnClick()
     {
         switchBackround.SetActive(true);
         switchBackround.GetComponent<Animator>().Play("FadeOut");
-        Invoke("ReverseActive",2f);
-        Invoke("SwitchPanel", 1f);
+        Invoke("ReverseActive", 2f);
+        Invoke("SwitchBack", 1f);
     }
 
-    public void SwitchPanel()
+    public void SwitchBack()
     {
-        middlePanel.SetActive(true);
-        gameObject.SetActive(false);
+        thisPanel.SetActive(false);
+        nextPanel.SetActive(true);
+        
     }
 
     public void ReverseActive()
@@ -33,9 +37,6 @@ public class ButtonDown : MonoBehaviour
         switchBackround.SetActive(false);
         //gameObject.SetActive(false);
     }
-
-
-
     // Update is called once per frame
     void Update()
     {
