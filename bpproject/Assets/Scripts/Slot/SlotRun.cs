@@ -23,6 +23,10 @@ public class SlotRun : MonoBehaviour
     public GameObject pointForFire;
     public GameObject pointForWind;
     public GameObject pointForLand;
+    public GameObject smallEXP1;
+    public GameObject smallEXP2;
+    public GameObject bigEXP;
+    public GameObject power;
     public int time;
     public int[] rewards;//奖励列表
     public GameObject resource;//弹出的奖励图标
@@ -40,15 +44,15 @@ public class SlotRun : MonoBehaviour
         pointB.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
         pointC.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
         //设置奖励列表以及奖励对应图标
-        rewards = new int[4] { 45, 135, 225, 315 };
-        rewardsPosition = new GameObject[4] { pointForLand,pointForWater,pointForFire,pointForWind };
+        rewards = new int[8] { 45, 135, 225, 315 ,0,90,180,270};
+        rewardsPosition = new GameObject[8] { pointForLand,pointForWater,pointForFire,pointForWind,power,smallEXP1,bigEXP,smallEXP2 };
         //小球初始速度
         speedA = 30;
         speedB = 30;
         speedC = 30;
         time = 3;
 
-        tili = 2;
+        tili = 10;
         Tilitext.text = tili.ToString();
         run.onClick.AddListener(delegate () { OnClick(); });
     }
@@ -66,15 +70,16 @@ public class SlotRun : MonoBehaviour
             speedC = 0;
             Tilitext.text = tili.ToString();
             SlotGo();
+            //禁用祈祷按钮，防止玩家疯狂按
+            run.enabled = false;
         }
-        //禁用祈祷按钮，防止玩家疯狂按
-        run.enabled = false;
+        
         
     }
 
     public int GetRandom()
     {
-        return Random.Range(0, 4);
+        return Random.Range(0, 7);
     }
 
     public void ReverseStopFlag()
@@ -109,8 +114,8 @@ public class SlotRun : MonoBehaviour
         {
             float positionX = rewardsPosition[reward].transform.position.x;
             float positionY = rewardsPosition[reward].transform.position.y;
-            GameObject go = GameObject.Instantiate(resource, new Vector3(positionX + Random.Range(0, 50), positionY + Random.Range(0, 50), 0), Quaternion.identity);
-            go.transform.SetParent(rewardsPosition[reward].transform);
+            GameObject go = GameObject.Instantiate(resource, new Vector3(positionX + Random.Range(-70, 70), positionY + Random.Range(-70, 70), 0), Quaternion.identity);
+            go.transform.SetParent(pointB.transform);
         }
     }
 
@@ -129,7 +134,7 @@ public class SlotRun : MonoBehaviour
             float positionX= rewardsPosition[reward].transform.position.x;
             float positionY = rewardsPosition[reward].transform.position.y;
             GameObject go =GameObject.Instantiate(resource, new Vector3(positionX + Random.Range(0, 50), positionY + Random.Range(0, 50), 0), Quaternion.identity);
-            go.transform.SetParent(rewardsPosition[reward].transform);
+            go.transform.SetParent(pointB.transform);
         }
         
     }

@@ -28,7 +28,7 @@ public class HaloControl : MonoBehaviour
     {
         if(run == true)
         {
-            Invoke("Stop", 3);
+            Invoke("Stop", 2);
             if (moonCanvasGroup.alpha < maxAlpha && isOn)
             {
                 moonCanvasGroup.alpha += flashSpeed * Time.deltaTime;
