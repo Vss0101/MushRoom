@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4905190742170569491}
   - component: {fileID: 8081295048492630152}
   - component: {fileID: 7143403289294191637}
+  - component: {fileID: 8460672603507807965}
+  - component: {fileID: 8460672603507807963}
   m_Layer: 5
   m_Name: BigEXP
   m_TagString: Untagged
@@ -72,6 +74,31 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!225 &8460672603507807965
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506988832650898336}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &8460672603507807963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506988832650898336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4037358e7e552d846820381443eef1e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  run: 0
 --- !u!1 &1564867538753632824
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +110,8 @@ GameObject:
   - component: {fileID: 2903825480186389662}
   - component: {fileID: 3861576935535271347}
   - component: {fileID: 2324805534020028114}
+  - component: {fileID: 8460672604059033424}
+  - component: {fileID: 8460672604059033422}
   m_Layer: 5
   m_Name: Power
   m_TagString: Untagged
@@ -144,6 +173,31 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!225 &8460672604059033424
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564867538753632824}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &8460672604059033422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564867538753632824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4037358e7e552d846820381443eef1e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  run: 0
 --- !u!1 &2027203157281371905
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +281,8 @@ GameObject:
   - component: {fileID: 5717659394347828642}
   - component: {fileID: 664259223067633271}
   - component: {fileID: 8341091437611934647}
+  - component: {fileID: 8460672604634679855}
+  - component: {fileID: 8460672604634679853}
   m_Layer: 5
   m_Name: SmallEXP1
   m_TagString: Untagged
@@ -288,6 +344,31 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!225 &8460672604634679855
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371845806269958486}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &8460672604634679853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371845806269958486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4037358e7e552d846820381443eef1e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  run: 0
 --- !u!1 &3505327902156219599
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,10 +934,10 @@ MonoBehaviour:
   pointForFire: {fileID: 4648859785969796219}
   pointForWind: {fileID: 4648859785689024846}
   pointForLand: {fileID: 4648859786768715689}
-  smallEXP1: {fileID: 0}
-  smallEXP2: {fileID: 0}
-  bigEXP: {fileID: 0}
-  power: {fileID: 0}
+  smallEXP1: {fileID: 2371845806269958486}
+  smallEXP2: {fileID: 9071950157970413358}
+  bigEXP: {fileID: 506988832650898336}
+  power: {fileID: 1564867538753632824}
   time: 0
   rewards: 
   resource: {fileID: 3362938916205924578, guid: c4bd407a0a5e45f47ab1108d2466549f,
@@ -1500,6 +1581,8 @@ GameObject:
   - component: {fileID: 687219630213244844}
   - component: {fileID: 1798718960742852618}
   - component: {fileID: 2551719313761460404}
+  - component: {fileID: 8460672603505502341}
+  - component: {fileID: 8460672603505502339}
   m_Layer: 5
   m_Name: SmallEXP2
   m_TagString: Untagged
@@ -1561,3 +1644,28 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!225 &8460672603505502341
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9071950157970413358}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &8460672603505502339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9071950157970413358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4037358e7e552d846820381443eef1e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  run: 0
