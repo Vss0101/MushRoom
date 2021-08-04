@@ -9,9 +9,11 @@ public class PopUI : MonoBehaviour
     public Button test;
     public GameObject image;
     public bool flag;
+    public float scale;
     // Start is called before the first frame update
     void Start()
     {
+        //scale = 1;
         flag = false;
         test.onClick.AddListener(delegate () { OnClick(); });
     }
@@ -22,7 +24,7 @@ public class PopUI : MonoBehaviour
         if (flag)
         {
             //image.SetActive(true);
-            image.transform.DOScale(new Vector3(1, 1, 1), 0.5f);
+            image.transform.DOScale(new Vector3(scale, scale, scale), 0.5f);
         }
         else
         {
