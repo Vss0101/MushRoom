@@ -16,6 +16,7 @@ public class SlotRun : MonoBehaviour
     public int rewardB;
     public int rewardC;
     public Button run;//祈祷按钮
+    public GameObject centerObject;
     public GameObject pointA;//小球父对象，控制转动角度
     public GameObject pointB;
     public GameObject pointC;
@@ -115,7 +116,7 @@ public class SlotRun : MonoBehaviour
             float positionX = rewardsPosition[reward].transform.position.x;
             float positionY = rewardsPosition[reward].transform.position.y;
             GameObject go = GameObject.Instantiate(resource, new Vector3(positionX + Random.Range(-70, 70), positionY + Random.Range(-70, 70), 0), Quaternion.identity);
-            go.transform.SetParent(pointB.transform);
+            go.transform.SetParent(centerObject.transform);
         }
     }
 
@@ -134,7 +135,7 @@ public class SlotRun : MonoBehaviour
             float positionX= rewardsPosition[reward].transform.position.x;
             float positionY = rewardsPosition[reward].transform.position.y;
             GameObject go =GameObject.Instantiate(resource, new Vector3(positionX + Random.Range(0, 50), positionY + Random.Range(0, 50), 0), Quaternion.identity);
-            go.transform.SetParent(pointB.transform);
+            go.transform.SetParent(centerObject.transform);
         }
         
     }
