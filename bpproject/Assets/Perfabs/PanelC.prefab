@@ -1391,6 +1391,14 @@ MonoBehaviour:
   tili: 0
   Tilitext: {fileID: 4821612128439561372}
   tip: {fileID: 0}
+  Windtext: {fileID: 572326496219388227}
+  Firetext: {fileID: 954579568039866372}
+  Landtext: {fileID: 3374275397766740256}
+  Watertext: {fileID: 2922380069271132751}
+  Wind: 0
+  Fire: 0
+  Land: 0
+  Water: 0
 --- !u!1 &3886124549775876376
 GameObject:
   m_ObjectHideFlags: 0
