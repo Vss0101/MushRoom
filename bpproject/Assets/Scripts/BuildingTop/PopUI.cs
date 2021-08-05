@@ -6,32 +6,75 @@ using DG.Tweening;
 
 public class PopUI : MonoBehaviour
 {
-    public Button test;
-    public GameObject image;
-    public bool flag;
+    public Button building;
+    public Button wantRepair;
+    public GameObject notRepair;
+    public GameObject repair;
+    public Image buildingA;
+    public bool isOpen;
     public float scale;
+    private bool isRepair;
     // Start is called before the first frame update
     void Start()
     {
         //scale = 1;
-        flag = false;
-        test.onClick.AddListener(delegate () { OnClick(); });
+        isOpen = false;
+        isRepair = false;
+        building.onClick.AddListener(delegate () { OnClickForBuilding(); });
+        wantRepair.onClick.AddListener(delegate () { OnClickForWantRepair(); });
+        //EventListener.AddEventListenr(gameObject).onclick = OnClickFunc;
     }
 
-    public void OnClick()
+    public void OnClickForWantRepair()
     {
-        flag = !flag;
-        if (flag)
+        isRepair = true;
+        buildingScaleControl();
+        isOpen = false;
+        notRepair.transform.DOScale(new Vector3(0, 0, 0), 0.5f);
+    }
+
+    public void buildingScaleControl()
+    {
+        if (isOpen)
         {
-            //image.SetActive(true);
-            image.transform.DOScale(new Vector3(scale, scale, scale), 0.5f);
+            building.transform.DOScale(new Vector3(building.transform.localScale.x - 1, building.transform.localScale.y - 1), 0.5f);
         }
         else
         {
-            //image.SetActive();
-            image.transform.DOScale(new Vector3(0, 0, 0), 0.5f);
+            building.transform.DOScale(new Vector3(building.transform.localScale.x + 1, building.transform.localScale.y + 1), 0.5f);
         }
     }
+
+    public void OnClickForBuilding()
+    {
+        if (!isOpen)
+        {
+            buildingScaleControl();
+            if (!isRepair)
+            {
+                notRepair.transform.DOScale(new Vector3(scale, scale, scale), 0.5f);
+            }
+            else
+            {
+                repair.transform.DOScale(new Vector3(scale, scale, scale), 0.5f);
+            }
+            isOpen = true;
+        }
+        else
+        {
+            buildingScaleControl();
+            if (!isRepair)
+            {
+                notRepair.transform.DOScale(new Vector3(0, 0, 0), 0.5f);
+            }
+            else
+            {
+                repair.transform.DOScale(new Vector3(0, 0, 0), 0.5f);
+            }
+            isOpen = false;
+        }
+            
+        }
 
     // Update is called once per frame
     void Update()
