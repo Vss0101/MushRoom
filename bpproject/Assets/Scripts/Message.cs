@@ -14,16 +14,13 @@ public class Message : MonoBehaviour
     public void GetMessage(string str){
         message = str;
         text.text = message;
-        Start();
+        Image.transform.DOLocalMove(new Vector3(0, 610, 0), 0.8f); 
         Invoke("GoBack",2);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        if(message!=""){
-          Image.transform.DOLocalMove(new Vector3(0, 610, 0), 0.8f); 
-        }
     }
 
     // Update is called once per frame

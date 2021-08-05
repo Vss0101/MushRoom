@@ -7,6 +7,7 @@ public class StartButton : MonoBehaviour
 {
 
     public GameObject panel;
+    public GameObject panelL;
         //= new GameObject();
     public Button button;
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class StartButton : MonoBehaviour
     public void OnClick()
     {
         panel.SetActive(false);
+        panelL.SetActive(true);
     }
 
     // Update is called once per frame

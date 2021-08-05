@@ -38,7 +38,16 @@ public class SlotRun : MonoBehaviour
     public int tili;//体力数据
     public Text Tilitext;//显示体力
     public Message tip;
-
+    // 四元素显示
+    public Text Windtext;
+    public Text Firetext;
+    public Text Landtext;
+    public Text Watertext;
+    // 四元素
+    public int Wind;
+    public int Fire;
+    public int Land;
+    public int Water;
 
     // Start is called before the first frame update
     void Start()
@@ -56,8 +65,18 @@ public class SlotRun : MonoBehaviour
         speedC = 30;
         time = 3;
 
+        //体力四元素初始化
         tili = 2;
-        Tilitext.text = tili.ToString();
+        Wind = 10;
+        Fire = 10;
+        Land = 10;
+        Water = 10;
+        
+        Windtext.text = Wind.ToString();
+        Firetext.text = Fire.ToString();
+        Landtext.text = Land.ToString();
+        Watertext.text = Water.ToString();
+
         run.onClick.AddListener(delegate () { OnClick(); });
     }
 
@@ -109,12 +128,16 @@ public class SlotRun : MonoBehaviour
         {
             GetSmallReward();
         }
+
     }
 
     public void GetMiddleReward(int reward)
     {
         //调用闪烁函数
         rewardsPosition[reward].GetComponent<HaloControl>().run = true;
+
+        WhatReward(reward,2);
+
         for (int i = 0; i < 5; i++)
         {
             float positionX = rewardsPosition[reward].transform.position.x;
@@ -133,6 +156,9 @@ public class SlotRun : MonoBehaviour
     {
         //调用闪烁函数
         rewardsPosition[reward].GetComponent<HaloControl>().run = true;
+
+        WhatReward(reward,5);
+
         //在对应奖励位置附近生成5个奖励图标，每个奖励图标自身有代码可以控制飞到某个位置自行销毁
         for (int i = 0; i < 5; i++)
         {
@@ -172,5 +198,18 @@ public class SlotRun : MonoBehaviour
         pointA.transform.Rotate(Vector3.forward, speedA * Time.deltaTime);
         pointB.transform.Rotate(Vector3.forward, speedB * Time.deltaTime);
         pointC.transform.Rotate(Vector3.forward, speedC * Time.deltaTime);
+    }
+
+    //判断老虎机封装
+    void WhatReward(int reward,int grade){
+        //获得四元素
+        switch (reward)
+        {
+            case 0 : Land = Land + 10*grade;Windtext.text = Wind.ToString();break;
+            case 1 : Water = Water + 10*grade;Firetext.text = Fire.ToString();break;
+            case 2 : Fire = Fire + 10*grade;Landtext.text = Land.ToString();break;
+            case 3 : Wind = Wind + 10*grade;Watertext.text = Water.ToString();break;
+            default: break;
+        }
     }
 }
