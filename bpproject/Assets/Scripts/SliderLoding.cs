@@ -22,8 +22,8 @@ public class SliderLoding : MonoBehaviour
 	}
 	void Update () 
     {
-        //单位时间内刷新
-        Invoke("Load",5);
+        //单位时间内开始刷新
+        Invoke("Load",2);
 	}
 
     //迭代刷新

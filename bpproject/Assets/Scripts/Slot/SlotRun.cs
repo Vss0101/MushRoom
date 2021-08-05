@@ -56,7 +56,7 @@ public class SlotRun : MonoBehaviour
         speedC = 30;
         time = 3;
 
-        tili = 10;
+        tili = 2;
         Tilitext.text = tili.ToString();
         run.onClick.AddListener(delegate () { OnClick(); });
     }
