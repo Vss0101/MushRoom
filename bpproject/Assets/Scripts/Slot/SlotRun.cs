@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class SlotRun : MonoBehaviour
 {
@@ -35,6 +37,7 @@ public class SlotRun : MonoBehaviour
 
     public int tili;//体力数据
     public Text Tilitext;//显示体力
+    public Message tip;
 
 
     // Start is called before the first frame update
@@ -62,6 +65,7 @@ public class SlotRun : MonoBehaviour
     public void OnClick()
     {
         if(tili<=0){
+            tip.GetMessage("没有体力啦");
             run.enabled = false;
         }
         else{
