@@ -17,6 +17,7 @@ public class NotRepairUI : MonoBehaviour
     public Sprite sLand;
     public Button ok;
     public Button cancel;
+    public GameObject building;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,8 @@ public class NotRepairUI : MonoBehaviour
     }
 
     public void OnClickOK(){
+        building.GetComponent<PopUI>().building.image.sprite = resource.sprite;
+        building.GetComponent<PopUI>().isRepair = true;
         gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x+800,gameObject.transform.position.y),0.5f);
     }
 

@@ -14,7 +14,7 @@ public class PopUI : MonoBehaviour
     public bool isOpen;
     public float scaleForUI;
     public float scaleForBuilding;
-    private bool isRepair;
+    public bool isRepair;
     public GameObject notRepairUI;
     public GameObject center;
     // Start is called before the first frame update
