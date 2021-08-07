@@ -10,13 +10,22 @@ public class PopUI : MonoBehaviour
     public Button wantRepair;
     public GameObject notRepair;
     public GameObject repair;
-    public Image buildingA;
+   // public Image buildingA;
     public bool isOpen;
     public float scaleForUI;
     public float scaleForBuilding;
     public bool isRepair;
     public GameObject notRepairUI;
     public GameObject center;
+
+    public Button levelUp;
+    public GameObject levelUpUI;
+
+    public Button characterLive;
+    public GameObject characterLiveUI;
+
+    public Button destory;
+    public GameObject destoryUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +33,30 @@ public class PopUI : MonoBehaviour
         scaleForBuilding = 1;
         building.onClick.AddListener(delegate () { OnClickForBuilding(); });
         wantRepair.onClick.AddListener(delegate () { OnClickForWantRepair(); });
+        levelUp.onClick.AddListener(delegate () { OnClickForLevelUp(); });
+        characterLive.onClick.AddListener(delegate () { OnClickForLiveIn(); });
+        destory.onClick.AddListener(delegate () { OnClickForDestory(); });
+    }
+
+    public void OnClickForDestory()
+    {
+        destoryUI.transform.DOMove(new Vector3(center.transform.position.x, notRepairUI.transform.position.y), 0.5f);
+        buildingScaleControl();
+        repairScaleControl();
+    }
+
+    public void OnClickForLiveIn()
+    {
+        characterLiveUI.transform.DOMove(new Vector3(center.transform.position.x, notRepairUI.transform.position.y), 0.5f);
+        buildingScaleControl();
+        repairScaleControl();
+    }
+
+    public void OnClickForLevelUp()
+    {
+        levelUpUI.transform.DOMove(new Vector3(center.transform.position.x, notRepairUI.transform.position.y), 0.5f);
+        buildingScaleControl();
+        repairScaleControl();
     }
 
     public void OnClickForWantRepair()
@@ -42,20 +75,32 @@ public class PopUI : MonoBehaviour
         scaleForBuilding = -scaleForBuilding;
     }
 
+    public void repairScaleControl()
+    {
+        repair.transform.DOScale(new Vector3(repair.transform.localScale.x + scaleForUI, repair.transform.localScale.x + scaleForUI), 0.5f);
+        scaleForUI = -scaleForUI;
+    }
+
+    public void notRepairScaleControl()
+    {
+        notRepairUI.transform.DOMove(new Vector3(center.transform.position.x, notRepairUI.transform.position.y), 0.5f);
+    }
+
+
+
     public void OnClickForBuilding()
     {
         //buildingScaleControl();
         if (!isRepair)
         {
-            notRepairUI.transform.DOMove(new Vector3(center.transform.position.x,notRepairUI.transform.position.y),0.5f);
+            notRepairScaleControl();
             //notRepair.transform.DOScale(new Vector3(notRepair.transform.localScale.x+scaleForUI, notRepair.transform.localScale.x+scaleForUI), 0.5f);
             //scaleForUI = -scaleForUI;
         }
         else
         {
             buildingScaleControl();
-            repair.transform.DOScale(new Vector3(repair.transform.localScale.x+scaleForUI, repair.transform.localScale.x+scaleForUI), 0.5f);
-            scaleForUI = -scaleForUI;
+            repairScaleControl();
         }
             
     }
