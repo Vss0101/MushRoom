@@ -426,6 +426,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &402632128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1874305577, guid: abf54ec84d484ef4ca89508406ae7b87,
+    type: 3}
+  m_PrefabInstance: {fileID: 7643789496002106246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &424751439
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,6 +2873,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 657743755}
     m_Modifications:
+    - target: {fileID: 1010866953378785176, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: 402632128}
     - target: {fileID: 1681564435752001190, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
       propertyPath: m_LocalPosition.x
