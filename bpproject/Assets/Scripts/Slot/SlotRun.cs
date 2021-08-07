@@ -11,9 +11,11 @@ public class SlotRun : MonoBehaviour
     public Image pointASub;//小球
     public Image pointBSub;
     public Image pointCSub;
+    public Image CircleCSub;
     public float speedA;//控制A球速度
     public float speedB;
     public float speedC;
+    public float speedCircle_C;
     public int rewardA;//A球获得的奖励
     public int rewardB;
     public int rewardC;
@@ -22,6 +24,7 @@ public class SlotRun : MonoBehaviour
     public GameObject pointA;//小球父对象，控制转动角度
     public GameObject pointB;
     public GameObject pointC;
+    public GameObject Circle_c;
     public GameObject pointForWater;//奖励所在位置
     public GameObject pointForFire;
     public GameObject pointForWind;
@@ -63,6 +66,7 @@ public class SlotRun : MonoBehaviour
         speedA = 30;
         speedB = 30;
         speedC = 30;
+        speedCircle_C = 40;
         time = 3;
 
         //体力四元素初始化
@@ -198,6 +202,7 @@ public class SlotRun : MonoBehaviour
         pointA.transform.Rotate(Vector3.forward, speedA * Time.deltaTime);
         pointB.transform.Rotate(Vector3.forward, speedB * Time.deltaTime);
         pointC.transform.Rotate(Vector3.forward, speedC * Time.deltaTime);
+        Circle_c.transform.Rotate(Vector3.forward, speedCircle_C * Time.deltaTime);
     }
 
     //判断老虎机封装

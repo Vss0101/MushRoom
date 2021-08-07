@@ -108,3 +108,6 @@ Assets/LuaDeepProfilerAssetSetting.asset
 Assets/LuaDeepProfilerAssetSetting.asset.meta
 Assets/Resources/LuaDeepProfilerSettings.bytes
 Assets/Resources/LuaDeepProfilerSettings.bytes.meta
+obj/
+.vs/
+
