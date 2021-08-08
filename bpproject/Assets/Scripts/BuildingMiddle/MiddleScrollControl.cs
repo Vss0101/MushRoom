@@ -8,6 +8,7 @@ public class MiddleScrollControl : MonoBehaviour
 {
     public Button move;
     public GameObject center;
+    public GameObject scroll;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class MiddleScrollControl : MonoBehaviour
     }
 
     public void OnClickMove(){
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x,gameObject.transform.position.y-(move.transform.position.y-center.transform.position.y)),0.5f);
+        scroll.transform.DOMove(new Vector3(scroll.transform.position.x,scroll.transform.position.y-(move.transform.position.y-center.transform.position.y)),0.5f);
     }
 
     // Update is called once per frame
