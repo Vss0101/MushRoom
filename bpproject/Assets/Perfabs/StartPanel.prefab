@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 7042012463328282965}
+  panelL: {fileID: 0}
   button: {fileID: 7042012462458762079}
 --- !u!225 &7630692033585135279
 CanvasGroup:
@@ -307,7 +308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 18ab0f7444bf0124cabca31ae6b3486d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d1dcdc9cf299de4e8f03b3f359b6b25, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
