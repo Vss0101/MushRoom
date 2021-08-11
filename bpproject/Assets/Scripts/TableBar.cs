@@ -39,7 +39,11 @@ public class TableBar : MonoBehaviour
     private void OnEnable()
     {
         // 仅激活默认面板
-        SelectPanel(defaultIndex);
+        if(defaultIndex >= 0)
+        {
+            SelectPanel(defaultIndex);
+        }
+        
     }
 
     /// <summary>
@@ -57,6 +61,9 @@ public class TableBar : MonoBehaviour
     /// <param name="index">面板序号。</param>
     private void SelectPanel(int index)
     {
+        if(selected < 0){
+            selected = 0;
+        }
         panels[selected].SetActive(false);
         panels[index].SetActive(true);
         selected = index;
