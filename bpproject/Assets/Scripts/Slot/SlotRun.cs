@@ -52,6 +52,13 @@ public class SlotRun : MonoBehaviour
     public int Land;
     public int Water;
 
+    public GameObject globalLandRsData;
+    public GameObject globalWaterRsData;
+    public GameObject globalFireRsData;
+    public GameObject globalWindRsData;
+    public GameObject globalPower;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,16 +77,18 @@ public class SlotRun : MonoBehaviour
         time = 3;
 
         //体力四元素初始化
-        tili = 2;
-        Wind = 10;
-        Fire = 10;
-        Land = 10;
-        Water = 10;
-        
+        tili = int.Parse(globalPower.GetComponent<Text>().text); ;
+        Wind = int.Parse(globalWindRsData.GetComponent<Text>().text);
+        Fire = int.Parse(globalFireRsData.GetComponent<Text>().text);
+        Land = int.Parse(globalLandRsData.GetComponent<Text>().text);
+        Water = int.Parse(globalWaterRsData.GetComponent<Text>().text);
+
         Windtext.text = Wind.ToString();
         Firetext.text = Fire.ToString();
         Landtext.text = Land.ToString();
         Watertext.text = Water.ToString();
+
+        
 
         run.onClick.AddListener(delegate () { OnClick(); });
     }
