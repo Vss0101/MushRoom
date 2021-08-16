@@ -38,8 +38,10 @@ public class SlotRun : MonoBehaviour
     public GameObject resource;//弹出的奖励图标
     public GameObject[] rewardsPosition;//奖励列表对应的位置
 
-    public int tili;//体力数据
+    public int tili = 10;//体力数据
     public Text Tilitext;//显示体力
+    public Slider slider;//体力条
+
     public Message tip;
     // 四元素显示
     public Text Windtext;
@@ -68,13 +70,13 @@ public class SlotRun : MonoBehaviour
         pointC.transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 360));
         //设置奖励列表以及奖励对应图标
         rewards = new int[8] { 45, 135, 225, 315 ,0,90,180,270};
-        rewardsPosition = new GameObject[8] { pointForLand,pointForWater,pointForFire,pointForWind,power,smallEXP1,bigEXP,smallEXP2 };
+        rewardsPosition = new GameObject[8] { pointForWater,pointForFire,pointForLand,pointForWind,bigEXP,smallEXP1,power,smallEXP2 };
         //小球初始速度
         speedA = 30;
         speedB = 30;
         speedC = 30;
         speedCircle_C = 40;
-        time = 3;
+        time = 5;
 
         //体力四元素初始化
         tili = int.Parse(globalPower.GetComponent<Text>().text); ;
@@ -87,6 +89,10 @@ public class SlotRun : MonoBehaviour
         Firetext.text = Fire.ToString();
         Landtext.text = Land.ToString();
         Watertext.text = Water.ToString();
+
+        //体力初始化
+        slider.value = tili;
+        Tilitext.text = tili.ToString() + "/100";
 
         
 
@@ -105,8 +111,8 @@ public class SlotRun : MonoBehaviour
             speedA = 0;
             speedB = 0;
             speedC = 0;
-            Tilitext.text = tili.ToString();
             SlotGo();
+            updataTili();
             //禁用祈祷按钮，防止玩家疯狂按
             run.enabled = false;
         }
@@ -139,7 +145,7 @@ public class SlotRun : MonoBehaviour
         }
         else
         {
-            GetSmallReward();
+            GetSmallReward(rewardA,rewardB,rewardC);
         }
 
     }
@@ -147,7 +153,9 @@ public class SlotRun : MonoBehaviour
     public void GetMiddleReward(int reward)
     {
         //调用闪烁函数
-        rewardsPosition[reward].GetComponent<HaloControl>().run = true;
+        if(!pdTili(reward)){
+            rewardsPosition[reward].GetComponent<HaloControl>().run = true;
+        }
 
         WhatReward(reward,2);
 
@@ -160,9 +168,15 @@ public class SlotRun : MonoBehaviour
         }
     }
 
-    public void GetSmallReward()
+    public void GetSmallReward(int rewardA,int rewardB,int rewardC)
     {
-
+        //调用闪烁函数
+        rewardsPosition[rewardA].GetComponent<HaloControl>().run = true;
+        rewardsPosition[rewardB].GetComponent<HaloControl>().run = true;
+        rewardsPosition[rewardC].GetComponent<HaloControl>().run = true;
+        WhatReward(rewardA,1);
+        WhatReward(rewardB,1);
+        WhatReward(rewardC,1);
     }
 
     public void GetBigReward(int reward)
@@ -219,11 +233,31 @@ public class SlotRun : MonoBehaviour
         //获得四元素
         switch (reward)
         {
-            case 0 : Land = Land + 10*grade;Windtext.text = Wind.ToString();break;
-            case 1 : Water = Water + 10*grade;Firetext.text = Fire.ToString();break;
-            case 2 : Fire = Fire + 10*grade;Landtext.text = Land.ToString();break;
-            case 3 : Wind = Wind + 10*grade;Watertext.text = Water.ToString();break;
+            case 0 : Water = Water + 10*grade;Watertext.text = Water.ToString();break;
+            case 1 : Fire = Fire + 10*grade;Firetext.text = Fire.ToString();break;
+            case 2 : Land = Land + 10*grade;Landtext.text = Land.ToString();break;
+            case 3 : Wind = Wind + 10*grade;Windtext.text = Wind.ToString();break;
+            case 4 : if(grade==5){
+                tili = (tili + 10 > 100?100:tili+10);updataTili();break;
+                }
+                else{
+                    break;
+                }
             default: break;
+        }
+    }
+
+    void updataTili(){
+        Tilitext.text = tili.ToString() + "/100";
+        slider.value = tili;
+        globalPower.GetComponent<Text>().text = tili.ToString();
+    }
+    bool pdTili(int reward){
+        if(reward == 3){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 }

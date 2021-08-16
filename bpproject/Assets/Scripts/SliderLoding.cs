@@ -13,7 +13,6 @@ public class SliderLoding : MonoBehaviour
     public Text text;
     public Slider slider;
     public GameObject LoadingP;
-    public GameObject GameMain;
 
 
 	void Start () 
@@ -30,7 +29,7 @@ public class SliderLoding : MonoBehaviour
     void Load(){
         if(cur>=100){
             LoadingP.SetActive(false);
-            GameMain.SetActive(true);
+            //GameMain.SetActive(true);
         }
         cur = cur + 1;
         slider.value = cur;

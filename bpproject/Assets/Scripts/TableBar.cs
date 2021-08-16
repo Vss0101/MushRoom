@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Net.Mime;
+using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -11,6 +13,7 @@ public class TableBar : MonoBehaviour
     public int defaultIndex = 0;
     public Button[] buttons = new Button[100];
     public GameObject[] panels = new GameObject[100];
+
     #endregion
 
     #region 成员变量
@@ -66,7 +69,34 @@ public class TableBar : MonoBehaviour
         }
         panels[selected].SetActive(false);
         panels[index].SetActive(true);
+        // 点击换图
+        if(index == 0){
+            tranTo(selected);
+            buttons[index].image.sprite = Resources.Load<Sprite>("左边按钮框2");
+        }
+        else if(index == 1){
+            tranTo(selected);
+            buttons[index].image.sprite = Resources.Load<Sprite>("中间按钮框2");
+        }
+        else{
+            tranTo(selected);
+            buttons[index].image.sprite = Resources.Load<Sprite>("右边按钮框2");
+        }
+
         selected = index;
     }
+
+    private void tranTo(int i){
+        if(i == 0){
+            buttons[selected].image.sprite = Resources.Load<Sprite>("左边按钮框");
+        }
+        else if(i == 1){
+            buttons[selected].image.sprite = Resources.Load<Sprite>("中间按钮框");
+        }
+        else{
+            buttons[selected].image.sprite = Resources.Load<Sprite>("右边按钮框");
+        }
+    }
+
     #endregion
 }
