@@ -1028,6 +1028,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &420205340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 559365657728597886, guid: 218fa7cb956049d409b0af554fbefc44,
+    type: 3}
+  m_PrefabInstance: {fileID: 8251588131339251448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &424751439
 GameObject:
   m_ObjectHideFlags: 0
@@ -3183,12 +3189,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!1 &1699907409 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8251588130849466793, guid: 218fa7cb956049d409b0af554fbefc44,
-    type: 3}
-  m_PrefabInstance: {fileID: 8251588131339251448}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1730307929
 GameObject:
   m_ObjectHideFlags: 0
@@ -4282,7 +4282,7 @@ MonoBehaviour:
   - {fileID: 0}
   panels:
   - {fileID: 6123725897672603396}
-  - {fileID: 1699907409}
+  - {fileID: 420205340}
   - {fileID: 1631937818}
   - {fileID: 0}
   - {fileID: 0}
