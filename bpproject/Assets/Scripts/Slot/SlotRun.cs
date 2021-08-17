@@ -76,7 +76,7 @@ public class SlotRun : MonoBehaviour
         speedB = 30;
         speedC = 30;
         speedCircle_C = 40;
-        time = 5;
+        time = 3;
 
         //体力四元素初始化
         tili = int.Parse(globalPower.GetComponent<Text>().text); ;
