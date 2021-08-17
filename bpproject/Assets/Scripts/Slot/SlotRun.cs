@@ -253,7 +253,7 @@ public class SlotRun : MonoBehaviour
         globalPower.GetComponent<Text>().text = tili.ToString();
     }
     bool pdTili(int reward){
-        if(reward == 3){
+        if(reward == 6){
             return true;
         }
         else{

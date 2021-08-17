@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 4105889828481512570}
   - component: {fileID: 4105889828481512569}
   m_Layer: 5
-  m_Name: Power
+  m_Name: BigExp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1554,7 +1554,7 @@ GameObject:
   - component: {fileID: 4105889829251733198}
   - component: {fileID: 4105889829251733197}
   m_Layer: 5
-  m_Name: BigEXP
+  m_Name: Power
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1865,8 +1865,8 @@ MonoBehaviour:
   pointForLand: {fileID: 4105889830055883296}
   smallEXP1: {fileID: 4105889829802871871}
   smallEXP2: {fileID: 4105889829765237506}
-  bigEXP: {fileID: 4105889829251733195}
-  power: {fileID: 4105889828481512568}
+  bigEXP: {fileID: 4105889828481512568}
+  power: {fileID: 4105889829251733195}
   time: 0
   rewards: 
   resource: {fileID: 3362938916205924578, guid: c4bd407a0a5e45f47ab1108d2466549f,
