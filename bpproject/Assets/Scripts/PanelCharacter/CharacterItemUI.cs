@@ -7,6 +7,7 @@ public class CharacterItemUI : MonoBehaviour
 {
     public GameObject characterItemPanel;
     public GameObject tablePanelForCharacter;
+    public GameObject tableBarForHome;
 
 
 
@@ -28,6 +29,7 @@ public class CharacterItemUI : MonoBehaviour
     {
         tablePanelForCharacter.SetActive(true);
         characterItemPanel.SetActive(true);
+        tableBarForHome.SetActive(false);
     }
 
 

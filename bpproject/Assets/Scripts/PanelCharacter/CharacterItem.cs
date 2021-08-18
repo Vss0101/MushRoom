@@ -7,6 +7,7 @@ public class CharacterItem : MonoBehaviour
 {
     public Button goBack;
     public GameObject tablePanelForCharacter;
+    public GameObject tableBarForHome;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +24,6 @@ public class CharacterItem : MonoBehaviour
     {
         tablePanelForCharacter.SetActive(false);
         gameObject.SetActive(false);
+        tableBarForHome.SetActive(true);
     }
 }
