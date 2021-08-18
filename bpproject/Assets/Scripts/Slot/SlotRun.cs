@@ -76,7 +76,7 @@ public class SlotRun : MonoBehaviour
         speedB = 30;
         speedC = 30;
         speedCircle_C = 40;
-        time = 3;
+        time = 2;
 
         //体力四元素初始化
         tili = int.Parse(globalPower.GetComponent<Text>().text); ;
@@ -187,7 +187,7 @@ public class SlotRun : MonoBehaviour
         rewardB = GetRandom();
         rewardC = GetRandom();
         //确定小球停留位置，并设置其动画效果
-        Tween t = pointC.transform.DORotate(new Vector3(0, 0, rewards[rewardA] - pointC.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
+        Tween t = pointC.transform.DORotate(new Vector3(0, 0, rewards[rewardA] - pointC.transform.eulerAngles.z - 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
         t.OnComplete(
             () =>
             {
@@ -197,18 +197,18 @@ public class SlotRun : MonoBehaviour
                 Invoke("ReverseStopFlag", 0.5f);
             }
         );
-        pointA.transform.DORotate(new Vector3(0, 0, rewards[rewardB] - pointA.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
-        pointB.transform.DORotate(new Vector3(0, 0, rewards[rewardC] - pointB.transform.eulerAngles.z + 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
+        pointA.transform.DORotate(new Vector3(0, 0, rewards[rewardB] - pointA.transform.eulerAngles.z - 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
+        pointB.transform.DORotate(new Vector3(0, 0, rewards[rewardC] - pointB.transform.eulerAngles.z - 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
     }
 
     // Update is called once per frame
     void Update()
     {
         //小球根据不停转动
-        pointA.transform.Rotate(Vector3.forward, speedA * Time.deltaTime);
-        pointB.transform.Rotate(Vector3.forward, speedB * Time.deltaTime);
-        pointC.transform.Rotate(Vector3.forward, speedC * Time.deltaTime);
-        Circle_c.transform.Rotate(Vector3.forward, speedCircle_C * Time.deltaTime);
+        pointA.transform.Rotate(-Vector3.forward, speedA * Time.deltaTime);
+        pointB.transform.Rotate(-Vector3.forward, speedB * Time.deltaTime);
+        pointC.transform.Rotate(-Vector3.forward, speedC * Time.deltaTime);
+        Circle_c.transform.Rotate(-Vector3.forward, speedCircle_C * Time.deltaTime);
     }
 
     //判断老虎机封装
