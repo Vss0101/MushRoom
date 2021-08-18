@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -158,14 +158,6 @@ public class SlotRun : MonoBehaviour
         }
 
         WhatReward(reward,2);
-
-        for (int i = 0; i < 5; i++)
-        {
-            float positionX = rewardsPosition[reward].transform.position.x;
-            float positionY = rewardsPosition[reward].transform.position.y;
-            GameObject go = GameObject.Instantiate(resource, new Vector3(positionX + Random.Range(-70, 70), positionY + Random.Range(-70, 70), 0), Quaternion.identity);
-            go.transform.SetParent(centerObject.transform);
-        }
     }
 
     public void GetSmallReward(int rewardA,int rewardB,int rewardC)
@@ -185,15 +177,6 @@ public class SlotRun : MonoBehaviour
         rewardsPosition[reward].GetComponent<HaloControl>().run = true;
 
         WhatReward(reward,5);
-
-        //在对应奖励位置附近生成5个奖励图标，每个奖励图标自身有代码可以控制飞到某个位置自行销毁
-        for (int i = 0; i < 5; i++)
-        {
-            float positionX= rewardsPosition[reward].transform.position.x;
-            float positionY = rewardsPosition[reward].transform.position.y;
-            GameObject go =GameObject.Instantiate(resource, new Vector3(positionX + Random.Range(0, 50), positionY + Random.Range(0, 50), 0), Quaternion.identity);
-            go.transform.SetParent(centerObject.transform);
-        }
         
     }
 
