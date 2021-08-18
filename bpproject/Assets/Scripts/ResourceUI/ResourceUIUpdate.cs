@@ -32,19 +32,19 @@ public class ResourceUIUpdate : MonoBehaviour
     {
         if(isDown)
         {
-            if (int.Parse(landUI.text) < int.Parse(globalLand.text))
+            if (int.Parse(landUI.text) != int.Parse(globalLand.text))
             {
                 DoTween();
             }
-            else if (int.Parse(waterUI.text) < int.Parse(globalWater.text))
+            else if (int.Parse(waterUI.text) != int.Parse(globalWater.text))
             {
                 DoTween();
             }
-            else if (int.Parse(fireUI.text) < int.Parse(globalFire.text))
+            else if (int.Parse(fireUI.text) != int.Parse(globalFire.text))
             {
                 DoTween();
             }
-            else if (int.Parse(windUI.text) < int.Parse(globalWind.text))
+            else if (int.Parse(windUI.text) != int.Parse(globalWind.text))
             {
                 DoTween();
             }
