@@ -1693,6 +1693,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ok: {fileID: 2649138077347937268}
   cancel: {fileID: 5269089795986480766}
+  buildingLevel: 0
+  oldData: {fileID: 666720940534585543}
+  newData: {fileID: 7464869753503962990}
+  text: {fileID: 666720941458295423}
+  selectElement: {fileID: 0}
+  globalFire: {fileID: 0}
+  globalWater: {fileID: 0}
+  globalLand: {fileID: 0}
+  globalWind: {fileID: 0}
+  tips: {fileID: 0}
 --- !u!1 &666720939681704898
 GameObject:
   m_ObjectHideFlags: 0
