@@ -23,7 +23,7 @@ public class UnlockControl : MonoBehaviour
         isUnlock = false;
         gameObject.GetComponent<Button>().onClick.AddListener(delegate () { OnClickSelect(); });
         unlock.onClick.AddListener(delegate () { OnClickUnlock(); });
-        scale = 0.5f;
+        scale = 0.2f;
         scaleForPop = 3;
     }
 
@@ -47,6 +47,7 @@ public class UnlockControl : MonoBehaviour
         popUI.transform.DOScale(new Vector3(0, 0), 0.5f);
         isUnlock = true;
         image.sprite = unLockImage;
+        image.transform.DOScale(new Vector3(image.transform.localScale.x - scale, image.transform.localScale.y - scale), 0.5f);
         globalUnlockData.GetComponent<Text>().text = (int.Parse(globalUnlockData.GetComponent<Text>().text )+1).ToString();
         if ((int.Parse(globalUnlockData.GetComponent<Text>().text)-1) % 3 == 0)
         {

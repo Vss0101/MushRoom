@@ -10,13 +10,19 @@ public class PopUI : MonoBehaviour
     public Button wantRepair;
     public GameObject notRepair;
     public GameObject repair;
-   // public Image buildingA;
+    // public Image buildingA;
     public bool isOpen;
-    public float scaleForUI;
+    public float scaleForUIY;
+    public float scaleForUIX;
     public float scaleForBuilding;
     public bool isRepair;
+    public Sprite selectImage;
+    public Sprite unSelectImage;
     public GameObject notRepairUI;
     public GameObject center;
+    public bool isSelect;
+
+    public GameObject message;
 
     public Button levelUp;
     public GameObject levelUpUI;
@@ -26,11 +32,15 @@ public class PopUI : MonoBehaviour
 
     public Button destory;
     public GameObject destoryUI;
+
+
     // Start is called before the first frame update
     void Start()
     {
         isRepair = false;
+        isSelect = false;
         scaleForBuilding = 1;
+        unSelectImage = gameObject.GetComponent<Image>().sprite;
         building.onClick.AddListener(delegate () { OnClickForBuilding(); });
         wantRepair.onClick.AddListener(delegate () { OnClickForWantRepair(); });
         levelUp.onClick.AddListener(delegate () { OnClickForLevelUp(); });
@@ -41,31 +51,35 @@ public class PopUI : MonoBehaviour
     public void OnClickForDestory()
     {
         destoryUI.transform.DOMove(new Vector3(center.transform.position.x, notRepairUI.transform.position.y), 0.5f);
-        buildingScaleControl();
+        //buildingScaleControl();
+        isSelectImageControl();
         repairScaleControl();
     }
 
     public void OnClickForLiveIn()
     {
         characterLiveUI.transform.DOMove(new Vector3(center.transform.position.x, notRepairUI.transform.position.y), 0.5f);
-        buildingScaleControl();
+        //buildingScaleControl();
+        isSelectImageControl();
         repairScaleControl();
     }
 
     public void OnClickForLevelUp()
     {
         levelUpUI.transform.DOMove(new Vector3(center.transform.position.x, notRepairUI.transform.position.y), 0.5f);
-        buildingScaleControl();
+        // buildingScaleControl();
+        isSelectImageControl();
         repairScaleControl();
     }
 
     public void OnClickForWantRepair()
     {
         isRepair = true;
-        if(scaleForUI<0){
-            scaleForUI = -scaleForUI;
+        if (scaleForUIY < 0) {
+            scaleForUIY = -scaleForUIY;
+            scaleForUIX = -scaleForUIX;
         }
-        buildingScaleControl();
+        //buildingScaleControl();
         notRepair.transform.DOScale(new Vector3(0, 0, 0), 0.5f);
     }
 
@@ -77,14 +91,35 @@ public class PopUI : MonoBehaviour
 
     public void repairScaleControl()
     {
-        repair.transform.DOScale(new Vector3(repair.transform.localScale.x + scaleForUI, repair.transform.localScale.x + scaleForUI), 0.5f);
-        scaleForUI = -scaleForUI;
+        Tween t = repair.transform.DOScale(new Vector3(repair.transform.localScale.x + scaleForUIX, repair.transform.localScale.y + scaleForUIY), 0.5f);
+        building.enabled = false;
+        t.OnComplete(
+            () =>
+            {
+                building.enabled = true;
+            }
+        );
+        scaleForUIY = -scaleForUIY;
+        scaleForUIX = -scaleForUIX;
     }
 
     public void notRepairScaleControl()
     {
         notRepairUI.transform.DOMove(new Vector3(center.transform.position.x, notRepairUI.transform.position.y), 0.5f);
     }
+
+    public void isSelectImageControl()
+    {
+        isSelect = !isSelect;
+        if (isSelect)
+        {
+            gameObject.GetComponent<Image>().sprite = selectImage;
+        }else
+        {
+            gameObject.GetComponent<Image>().sprite = unSelectImage;
+        }
+    }
+
 
 
 
@@ -93,13 +128,15 @@ public class PopUI : MonoBehaviour
         //buildingScaleControl();
         if (!isRepair)
         {
+            isSelectImageControl();
             notRepairScaleControl();
-            //notRepair.transform.DOScale(new Vector3(notRepair.transform.localScale.x+scaleForUI, notRepair.transform.localScale.x+scaleForUI), 0.5f);
-            //scaleForUI = -scaleForUI;
+            //notRepair.transform.DOScale(new Vector3(notRepair.transform.localScale.x+scaleForUIY, notRepair.transform.localScale.x+scaleForUIY), 0.5f);
+            //scaleForUIY = -scaleForUIY;
         }
         else
         {
-            buildingScaleControl();
+            //buildingScaleControl();
+            isSelectImageControl();
             repairScaleControl();
         }
             
