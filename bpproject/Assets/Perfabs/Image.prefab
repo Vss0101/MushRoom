@@ -85,3 +85,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6cb2831afbd85640b535a6a4414df6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageReward: {fileID: 6223530125059481586}
+  rewardResource: 0
+  isStart: 0
+  ctrlPoints:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}

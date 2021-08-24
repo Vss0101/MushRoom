@@ -1,3 +1,7 @@
+//using System.Numerics;
+using System.Reflection;
+using System.Linq.Expressions;
+using System.Globalization;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +9,8 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using ForeverNine.MagicCoast;
+
 
 public class SlotRun : MonoBehaviour
 {
@@ -12,13 +18,16 @@ public class SlotRun : MonoBehaviour
     public Image pointBSub;
     public Image pointCSub;
     public Image CircleCSub;
+
     public float speedA;//控制A球速度
     public float speedB;
     public float speedC;
     public float speedCircle_C;
+
     public int rewardA;//A球获得的奖励
     public int rewardB;
     public int rewardC;
+
     public Button run;//祈祷按钮
     public GameObject centerObject;
     public GameObject pointA;//小球父对象，控制转动角度
@@ -43,11 +52,7 @@ public class SlotRun : MonoBehaviour
     public Slider slider;//体力条
 
     public Message tip;
-    // 四元素显示
-    public Text Windtext;
-    public Text Firetext;
-    public Text Landtext;
-    public Text Watertext;
+
     // 四元素
     public int Wind;
     public int Fire;
@@ -84,11 +89,6 @@ public class SlotRun : MonoBehaviour
         Fire = int.Parse(globalFireRsData.GetComponent<Text>().text);
         Land = int.Parse(globalLandRsData.GetComponent<Text>().text);
         Water = int.Parse(globalWaterRsData.GetComponent<Text>().text);
-
-        Windtext.text = Wind.ToString();
-        Firetext.text = Fire.ToString();
-        Landtext.text = Land.ToString();
-        Watertext.text = Water.ToString();
 
         //体力初始化
         slider.value = tili;
@@ -155,19 +155,31 @@ public class SlotRun : MonoBehaviour
         //调用闪烁函数
         if(!pdTili(reward)){
             rewardsPosition[reward].GetComponent<HaloControl>().run = true;
+            showRewardDh(reward,3);
         }
-
-        WhatReward(reward,2);
+        WhatReward(reward,5);
     }
 
     public void GetSmallReward(int rewardA,int rewardB,int rewardC)
     {
         //调用闪烁函数
-        rewardsPosition[rewardA].GetComponent<HaloControl>().run = true;
-        rewardsPosition[rewardB].GetComponent<HaloControl>().run = true;
-        rewardsPosition[rewardC].GetComponent<HaloControl>().run = true;
+        if(!pdTili(rewardA)){
+            rewardsPosition[rewardA].GetComponent<HaloControl>().run = true;
+            showRewardDh(rewardA,3);
+        }
+        if(!pdTili(rewardB)){
+            rewardsPosition[rewardB].GetComponent<HaloControl>().run = true;
+            showRewardDh(rewardB,3);
+        }
+        if(!pdTili(rewardC)){
+            rewardsPosition[rewardC].GetComponent<HaloControl>().run = true;
+            showRewardDh(rewardC,3);
+        }
+
         WhatReward(rewardA,1);
+
         WhatReward(rewardB,1);
+
         WhatReward(rewardC,1);
     }
 
@@ -175,9 +187,8 @@ public class SlotRun : MonoBehaviour
     {
         //调用闪烁函数
         rewardsPosition[reward].GetComponent<HaloControl>().run = true;
-
+        showRewardDh(reward,8);
         WhatReward(reward,5);
-        
     }
 
     public void SlotGo()
@@ -211,16 +222,18 @@ public class SlotRun : MonoBehaviour
         Circle_c.transform.Rotate(-Vector3.forward, speedCircle_C * Time.deltaTime);
     }
 
-    //判断老虎机封装
+    //判断老虎机封装,grade判断奖励大小1.small;2.midlle;3.big;
     void WhatReward(int reward,int grade){
         //获得四元素
         switch (reward)
         {
-            case 0 : Water = Water + 10*grade;Watertext.text = Water.ToString();break;
-            case 1 : Fire = Fire + 10*grade;Firetext.text = Fire.ToString();break;
-            case 2 : Land = Land + 10*grade;Landtext.text = Land.ToString();break;
-            case 3 : Wind = Wind + 10*grade;Windtext.text = Wind.ToString();break;
-            case 4 : if(grade==5){
+            case 0 : Water = Water + 10*grade;globalWaterRsData.GetComponent<Text>().text = Water.ToString();break;
+            case 1 : Fire = Fire + 10*grade;globalFireRsData.GetComponent<Text>().text = Fire.ToString();break;
+            case 2 : Land = Land + 10*grade;globalLandRsData.GetComponent<Text>().text = Land.ToString();break;
+            case 3 : Wind = Wind + 10*grade;globalWindRsData.GetComponent<Text>().text = Wind.ToString();break;
+            case 4 : // 大经验
+            case 5 : // 小经验
+            case 6 : if(grade==5){
                 tili = (tili + 10 > 100?100:tili+10);updataTili();break;
                 }
                 else{
@@ -235,12 +248,57 @@ public class SlotRun : MonoBehaviour
         slider.value = tili;
         globalPower.GetComponent<Text>().text = tili.ToString();
     }
+
     bool pdTili(int reward){
-        if(reward == 6){
+        if(reward == 6 || reward == 4){
             return true;
         }
         else{
             return false;
         }
     }
+
+    // 使用贝塞尔曲线实现获得奖励后奖励运动轨迹
+    void showRewardDh(int reward,int grade){
+
+
+
+            // 获得奖励的位置
+            float positionX = rewardsPosition[reward].transform.position.x;
+            float positionY = rewardsPosition[reward].transform.position.y;
+
+            // 实例化
+            for(int i=0;i<grade;i++){
+
+                float StartX = positionX + Random.Range(-50,50);
+                float StartY = positionY + Random.Range(-50,50);
+
+                resource.GetComponent<GetResource>().changePicture(reward);
+                GameObject go = GameObject.Instantiate(resource, new Vector3(StartX, StartY, 0), new Quaternion());
+            
+                // 设置父对象，不然go不会显示
+                go.transform.parent = centerObject.transform;
+                go.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+
+                Vector3[] ctrlPoints = new Vector3[3];
+
+                // 贝塞尔曲线起始位置
+                ctrlPoints[0] = go.transform.position;;
+
+                // 拐弯点
+                ctrlPoints[1] = new Vector3(StartX - Random.Range(0,50), StartY + 50, 0);
+
+                // 贝塞尔曲线终点位置，除了体力都在中间
+                if(reward == 6){
+                    ctrlPoints[2] = new Vector3(145, 400, 0);
+                }
+                else {
+                    ctrlPoints[2] = new Vector3(377, 800, 0);
+                }
+
+                // 运动轨迹
+                go.GetComponent<GetResource>().getIsStart(true, ctrlPoints);
+
+            }
+    }        
 }
