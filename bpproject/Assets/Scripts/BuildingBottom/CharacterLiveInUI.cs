@@ -12,61 +12,91 @@ public class CharacterLiveInUI : MonoBehaviour
     public Image character1;
     public Image character2;
     public Image character3;
-    public Vector3 oldScale;
-    public Vector3 newScale;
+    public Button right;
+    public Button left;
+    public GameObject content;
+    private int selectCharacter;
+    public CanvasGroup rightCanvas;
+    public CanvasGroup leftCanvas;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        oldScale = new Vector3(character1.transform.localScale.x, character1.transform.localScale.y,character1.transform.localScale.z);
-        newScale = new Vector3(character1.transform.localScale.x+0.3f, character1.transform.localScale.y+0.3f, character1.transform.localScale.z);
+        selectCharacter = 1;
         ok.onClick.AddListener(delegate () { OnClickOK(); });
         cancel.onClick.AddListener(delegate () { OnClickCancel(); });
         character1.GetComponent<Button>().onClick.AddListener(delegate () { OnClickSelectC1(); });
         character2.GetComponent<Button>().onClick.AddListener(delegate () { OnClickSelectC2(); });
         character3.GetComponent<Button>().onClick.AddListener(delegate () { OnClickSelectC3(); });
+        right.GetComponent<Button>().onClick.AddListener(delegate () { OnClickGoRight(); });
+        left.GetComponent<Button>().onClick.AddListener(delegate () { OnClickGoLeft(); });
+        rightCanvas = right.GetComponent<CanvasGroup>();
+        leftCanvas = left.GetComponent<CanvasGroup>();
+
+        
     }
 
     public void OnClickSelectC1()
     {
-        AllScaleGoBack();
-        character1.transform.DOScale(newScale,0.5f);
+
     }
     public void OnClickSelectC2()
     {
-        AllScaleGoBack();
-        character2.transform.DOScale(newScale, 0.5f);
+
     }
     public void OnClickSelectC3()
     {
-        AllScaleGoBack();
-        character3.transform.DOScale(newScale, 0.5f);
+
     }
 
-    public void AllScaleGoBack()
+    public void OnClickGoRight()
     {
-        character1.transform.DOScale(oldScale, 0.5f);
-        character2.transform.DOScale(oldScale, 0.5f);
-        character3.transform.DOScale(oldScale, 0.5f);
+        content.transform.DOMove(new Vector3(content.transform.position.x - 465, content.transform.position.y), 0.5f);
+        selectCharacter++;
+    
+    }
+
+    public void OnClickGoLeft()
+    {
+        content.transform.DOMove(new Vector3(content.transform.position.x + 465, content.transform.position.y), 0.5f);
+        selectCharacter--;
     }
 
 
     public void OnClickCancel()
     {
-        AllScaleGoBack();
+
         gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
     }
 
     public void OnClickOK()
     {
-        AllScaleGoBack();
+
         gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
     }
 
     // Update is called once per frame
     void Update()
     {
+       
+        if(selectCharacter == 1)
+        {
+            leftCanvas.alpha = 0.5f;
+            left.enabled = false;
+        }else if (selectCharacter == 4)
+        {
+            rightCanvas.alpha = 0.5f;
+            right.enabled = false;
+        }
+        else
+        {
+            leftCanvas.alpha = 1f;
+            left.enabled = true;
+            rightCanvas.alpha = 1f;
+            right.enabled = true;
+        }
+
     }
 
     public void OnClick(BaseEventData data)
