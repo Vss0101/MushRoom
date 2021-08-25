@@ -51,7 +51,7 @@ public class NotRepairUI : MonoBehaviour
     }
 
     public void OnClickCancel(){
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x+800,gameObject.transform.position.y),0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x+ 1000, gameObject.transform.position.y),0.5f);
         building.GetComponent<PopUI>().isSelectImageControl();
     }
 
@@ -60,7 +60,7 @@ public class NotRepairUI : MonoBehaviour
         {
             building.GetComponent<PopUI>().building.image.sprite = resource.sprite;
             building.GetComponent<PopUI>().isRepair = true;
-            gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+            gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
             message.SetActive(true);
             messageResource.sprite = resource.sprite;
             building.GetComponent<PopUI>().isSelectImageControl();

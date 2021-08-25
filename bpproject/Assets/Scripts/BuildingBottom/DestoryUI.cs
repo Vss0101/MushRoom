@@ -18,12 +18,12 @@ public class DestoryUI : MonoBehaviour
 
     public void OnClickCancel()
     {
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
 
     public void OnClickOK()
     {
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
 
     // Update is called once per frame

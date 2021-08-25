@@ -27,6 +27,8 @@ public class CharacterLiveInUI : MonoBehaviour
     public Sprite s4;
     public Image image;
 
+    public GameObject scrollerView;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,27 +51,29 @@ public class CharacterLiveInUI : MonoBehaviour
     public void OnClickSelectC1()
     {
         image.sprite = s1;
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
     public void OnClickSelectC2()
     {
         image.sprite = s2;
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
     public void OnClickSelectC3()
     {
         image.sprite = s3;
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
     public void OnClickSelectC4()
     {
         image.sprite = s4;
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
 
     public void OnClickGoRight()
     {
-        Tween t =content.transform.DOMove(new Vector3(content.transform.position.x - 465, content.transform.position.y), 0.5f);
+        //Tween t =content.transform.DOMove(new Vector3(content.transform.position.x - scrollerView.GetComponent<RectTransform>().rect.width * gameObject.transform.localScale.x, content.transform.position.y), 0.5f);
+        Tween t = content.transform.DOMove(new Vector3(content.transform.position.x + (character1.transform.position.x - character2.transform.position.x), content.transform.position.y), 0.5f); right.enabled = false;
+
         right.enabled = false;
         left.enabled = false;
         t.OnComplete(
@@ -86,7 +90,7 @@ public class CharacterLiveInUI : MonoBehaviour
 
     public void OnClickGoLeft()
     {
-        Tween t = content.transform.DOMove(new Vector3(content.transform.position.x + 465, content.transform.position.y), 0.5f);
+        Tween t = content.transform.DOMove(new Vector3(content.transform.position.x - (character1.transform.position.x - character2.transform.position.x), content.transform.position.y), 0.5f);
         right.enabled = false;
         left.enabled = false;
         t.OnComplete(
@@ -105,13 +109,13 @@ public class CharacterLiveInUI : MonoBehaviour
     public void OnClickCancel()
     {
 
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
 
     public void OnClickOK()
     {
 
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
 
     // Update is called once per frame

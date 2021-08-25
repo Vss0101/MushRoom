@@ -17,6 +17,10 @@ public class UnlockControl : MonoBehaviour
     public Button unlock;
     public GameObject content;
 
+    public GameObject pos1;
+    public GameObject pos2;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +55,7 @@ public class UnlockControl : MonoBehaviour
         globalUnlockData.GetComponent<Text>().text = (int.Parse(globalUnlockData.GetComponent<Text>().text )+1).ToString();
         if ((int.Parse(globalUnlockData.GetComponent<Text>().text)-1) % 3 == 0)
         {
-            content.transform.DOMove(new Vector3(content.transform.position.x, content.transform.position.y - 1334),1f);
+            content.transform.DOMove(new Vector3(content.transform.position.x, content.transform.position.y - (pos2.transform.position.y - pos1.transform.position.y)),1f);
         }
 
     }

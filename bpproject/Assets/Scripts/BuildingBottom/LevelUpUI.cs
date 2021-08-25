@@ -53,14 +53,14 @@ public class LevelUpUI : MonoBehaviour
 
     public void OnClickCancel()
     {
-        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+        gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
 
     public void OnClickOK()
     {
         if (Consume())
         {
-            gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 800, gameObject.transform.position.y), 0.5f);
+            gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
             buildingLevel += 1;
             oldData.text = newData.text;
             newData.text = (buildingLevel + 1).ToString() + "%";
