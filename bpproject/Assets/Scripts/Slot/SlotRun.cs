@@ -47,7 +47,7 @@ public class SlotRun : MonoBehaviour
     public GameObject resource;//弹出的奖励图标
     public GameObject[] rewardsPosition;//奖励列表对应的位置
 
-    public int tili = 10;//体力数据
+    public int tili ;//体力数据
     public Text Tilitext;//显示体力
     public Slider slider;//体力条
 
@@ -108,6 +108,7 @@ public class SlotRun : MonoBehaviour
         }
         else{
             tili = tili - 1;
+            globalPower.GetComponent<Text>().text = tili.ToString();
             speedA = 0;
             speedB = 0;
             speedC = 0;
@@ -261,8 +262,6 @@ public class SlotRun : MonoBehaviour
     // 使用贝塞尔曲线实现获得奖励后奖励运动轨迹
     void showRewardDh(int reward,int grade){
 
-
-
             // 获得奖励的位置
             float positionX = rewardsPosition[reward].transform.position.x;
             float positionY = rewardsPosition[reward].transform.position.y;
@@ -277,7 +276,7 @@ public class SlotRun : MonoBehaviour
                 GameObject go = GameObject.Instantiate(resource, new Vector3(StartX, StartY, 0), new Quaternion());
             
                 // 设置父对象，不然go不会显示
-                go.transform.parent = centerObject.transform;
+                go.transform.SetParent(centerObject.transform) ;
                 go.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 
                 Vector3[] ctrlPoints = new Vector3[3];
