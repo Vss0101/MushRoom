@@ -114,7 +114,20 @@ public class CharacterLiveInUI : MonoBehaviour
 
     public void OnClickOK()
     {
-
+        if (selectCharacter == 1)
+        {
+            image.sprite = s1;
+        }
+        else if (selectCharacter == 2)
+        {
+            image.sprite = s2;
+        }else if (selectCharacter == 3)
+        {
+            image.sprite = s3;
+        }else if (selectCharacter == 4)
+        {
+            image.sprite = s4;
+        }
         gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
 

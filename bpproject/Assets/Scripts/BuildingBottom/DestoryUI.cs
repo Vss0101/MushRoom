@@ -20,6 +20,8 @@ public class DestoryUI : MonoBehaviour
     public Text globalLand;
     public Text globalWind;
 
+    public GameObject shouldRepairUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +51,7 @@ public class DestoryUI : MonoBehaviour
         building.GetComponent<PopUI>().isRepair = false;
         message.SetActive(false);
         characterLive.sprite = noSelect;
-
+        shouldRepairUI.SetActive(true);
         gameObject.transform.DOMove(new Vector3(gameObject.transform.position.x + 1000, gameObject.transform.position.y), 0.5f);
     }
 

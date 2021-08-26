@@ -36,7 +36,6 @@ public class PopUI : MonoBehaviour
     public Image shouldRepair;
     public int uiMove;
 
-
     // Start is called before the first frame update
     void Start()
     {
