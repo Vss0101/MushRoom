@@ -10,11 +10,12 @@ public class Message : MonoBehaviour
     //显示消息内容
     public string message;
     public GameObject Image;
+    public GameObject position;
 
     public void GetMessage(string str){
         message = str;
         text.text = message;
-        Image.transform.DOLocalMove(new Vector3(0, 610, 0), 0.8f); 
+        Image.transform.DOMove(new Vector3(gameObject.transform.position.x, position.transform.position.y, 0), 0.8f); 
         Invoke("GoBack",2);
     }
 
@@ -30,7 +31,7 @@ public class Message : MonoBehaviour
     }
 
     void GoBack(){
-        Image.transform.DOLocalMove(new Vector3(0, 720, 0), 0.8f);
+        Image.transform.DOMove(new Vector3(gameObject.transform.position.x, Image.transform.position.y + 300, 0), 0.8f);
     }
 
 
