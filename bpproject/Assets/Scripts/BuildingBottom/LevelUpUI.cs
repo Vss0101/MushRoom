@@ -22,14 +22,19 @@ public class LevelUpUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Reset();
+        ok.onClick.AddListener(delegate () { OnClickOK(); });
+        cancel.onClick.AddListener(delegate () { OnClickCancel(); });
+
+    }
+
+    public void Reset()
+    {
         oldData.text = "1%";
         newData.text = "2%";
         text.text = "All elements required to upgrade ×400";
         //whatElement();
         buildingLevel = 1;
-        ok.onClick.AddListener(delegate () { OnClickOK(); });
-        cancel.onClick.AddListener(delegate () { OnClickCancel(); });
-
     }
 
     public void whatElement()

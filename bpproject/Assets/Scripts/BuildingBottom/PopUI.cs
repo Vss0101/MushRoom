@@ -33,6 +33,9 @@ public class PopUI : MonoBehaviour
     public Button destory;
     public GameObject destoryUI;
 
+    public Image shouldRepair;
+    public int uiMove;
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +49,29 @@ public class PopUI : MonoBehaviour
         levelUp.onClick.AddListener(delegate () { OnClickForLevelUp(); });
         characterLive.onClick.AddListener(delegate () { OnClickForLiveIn(); });
         destory.onClick.AddListener(delegate () { OnClickForDestory(); });
+        uiMove = 20;
+        uiUpdate();
+    }
+
+    public void uiUpdate()
+    {
+        float time = 0;
+        if(uiMove > 0)
+        {
+            time = 1.5f;
+        }else
+        {
+            time = 0.5f;
+        }
+        Tween t = shouldRepair.transform.DOMove(new Vector3(shouldRepair.transform.position.x, shouldRepair.transform.position.y + uiMove), time);
+        t.OnComplete(
+            () =>
+            {
+                uiMove *= -1;
+                uiUpdate();
+            }
+        );
+
     }
 
     public void OnClickForDestory()
