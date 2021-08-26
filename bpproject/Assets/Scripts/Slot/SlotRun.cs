@@ -84,7 +84,7 @@ public class SlotRun : MonoBehaviour
         time = 2;
 
         //体力四元素初始化
-        tili = int.Parse(globalPower.GetComponent<Text>().text); ;
+        tili = int.Parse(globalPower.GetComponent<Text>().text);
         Wind = int.Parse(globalWindRsData.GetComponent<Text>().text);
         Fire = int.Parse(globalFireRsData.GetComponent<Text>().text);
         Land = int.Parse(globalLandRsData.GetComponent<Text>().text);
@@ -107,13 +107,14 @@ public class SlotRun : MonoBehaviour
             run.enabled = false;
         }
         else{
-            tili = tili - 1;
-            globalPower.GetComponent<Text>().text = tili.ToString();
+            tili = int.Parse(globalPower.GetComponent<Text>().text) - 1;
+            updataTili();
+
             speedA = 0;
             speedB = 0;
             speedC = 0;
             SlotGo();
-            updataTili();
+
             //禁用祈祷按钮，防止玩家疯狂按
             run.enabled = false;
         }
@@ -154,25 +155,25 @@ public class SlotRun : MonoBehaviour
     public void GetMiddleReward(int reward)
     {
         //调用闪烁函数
-        if(!pdTili(reward)){
+        if(!pdTiliAndBigExp(reward)){
             rewardsPosition[reward].GetComponent<HaloControl>().run = true;
-            showRewardDh(reward,3);
+            showRewardDh(reward,5);
         }
-        WhatReward(reward,5);
+        WhatReward(reward,3);
     }
 
     public void GetSmallReward(int rewardA,int rewardB,int rewardC)
     {
         //调用闪烁函数
-        if(!pdTili(rewardA)){
+        if(!pdTiliAndBigExp(rewardA)){
             rewardsPosition[rewardA].GetComponent<HaloControl>().run = true;
             showRewardDh(rewardA,3);
         }
-        if(!pdTili(rewardB)){
+        if(!pdTiliAndBigExp(rewardB)){
             rewardsPosition[rewardB].GetComponent<HaloControl>().run = true;
             showRewardDh(rewardB,3);
         }
-        if(!pdTili(rewardC)){
+        if(!pdTiliAndBigExp(rewardC)){
             rewardsPosition[rewardC].GetComponent<HaloControl>().run = true;
             showRewardDh(rewardC,3);
         }
@@ -228,14 +229,14 @@ public class SlotRun : MonoBehaviour
         //获得四元素
         switch (reward)
         {
-            case 0 : Water = Water + 10*grade;globalWaterRsData.GetComponent<Text>().text = Water.ToString();break;
-            case 1 : Fire = Fire + 10*grade;globalFireRsData.GetComponent<Text>().text = Fire.ToString();break;
-            case 2 : Land = Land + 10*grade;globalLandRsData.GetComponent<Text>().text = Land.ToString();break;
-            case 3 : Wind = Wind + 10*grade;globalWindRsData.GetComponent<Text>().text = Wind.ToString();break;
+            case 0 : Water = int.Parse(globalWaterRsData.GetComponent<Text>().text) + 10*grade;globalWaterRsData.GetComponent<Text>().text = Water.ToString();break;
+            case 1 : Fire = int.Parse(globalFireRsData.GetComponent<Text>().text) + 10*grade;globalFireRsData.GetComponent<Text>().text = Fire.ToString();break;
+            case 2 : Land = int.Parse(globalLandRsData.GetComponent<Text>().text) + 10*grade;globalLandRsData.GetComponent<Text>().text = Land.ToString();break;
+            case 3 : Wind = int.Parse(globalWindRsData.GetComponent<Text>().text) + 10*grade;globalWindRsData.GetComponent<Text>().text = Wind.ToString();break;
             case 4 : // 大经验
             case 5 : // 小经验
             case 6 : if(grade==5){
-                tili = (tili + 10 > 100?100:tili+10);updataTili();break;
+                tili = (int.Parse(globalPower.GetComponent<Text>().text) + 10 > 100?100:int.Parse(globalPower.GetComponent<Text>().text)+10);updataTili();break;
                 }
                 else{
                     break;
@@ -250,7 +251,7 @@ public class SlotRun : MonoBehaviour
         globalPower.GetComponent<Text>().text = tili.ToString();
     }
 
-    bool pdTili(int reward){
+    bool pdTiliAndBigExp(int reward){
         if(reward == 6 || reward == 4){
             return true;
         }
