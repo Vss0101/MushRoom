@@ -30,6 +30,7 @@ public class SlotRun : MonoBehaviour
 
     public Button run;//祈祷按钮
     public GameObject centerObject;
+    public GameObject TiliObject;
     public GameObject pointA;//小球父对象，控制转动角度
     public GameObject pointB;
     public GameObject pointC;
@@ -47,9 +48,10 @@ public class SlotRun : MonoBehaviour
     public GameObject resource;//弹出的奖励图标
     public GameObject[] rewardsPosition;//奖励列表对应的位置
 
-    public int tili ;//体力数据
     public Text Tilitext;//显示体力
     public Slider slider;//体力条
+    public int tili;
+    public bool changePower = false;
 
     public Message tip;
 
@@ -83,18 +85,16 @@ public class SlotRun : MonoBehaviour
         speedCircle_C = 40;
         time = 2;
 
-        //体力四元素初始化
-        tili = int.Parse(globalPower.GetComponent<Text>().text);
+        //四元素初始化
         Wind = int.Parse(globalWindRsData.GetComponent<Text>().text);
         Fire = int.Parse(globalFireRsData.GetComponent<Text>().text);
         Land = int.Parse(globalLandRsData.GetComponent<Text>().text);
         Water = int.Parse(globalWaterRsData.GetComponent<Text>().text);
 
         //体力初始化
+        tili = int.Parse(globalPower.GetComponent<Text>().text);
         slider.value = tili;
-        Tilitext.text = tili.ToString() + "/100";
-
-        
+        Tilitext.text = tili + "/100";
 
         run.onClick.AddListener(delegate () { OnClick(); });
     }
@@ -107,9 +107,8 @@ public class SlotRun : MonoBehaviour
             run.enabled = false;
         }
         else{
-            tili = int.Parse(globalPower.GetComponent<Text>().text) - 1;
-            updataTili();
-
+            tili = tili - 1;
+            changePower = true;
             speedA = 0;
             speedB = 0;
             speedC = 0;
@@ -222,6 +221,14 @@ public class SlotRun : MonoBehaviour
         pointB.transform.Rotate(-Vector3.forward, speedB * Time.deltaTime);
         pointC.transform.Rotate(-Vector3.forward, speedC * Time.deltaTime);
         Circle_c.transform.Rotate(-Vector3.forward, speedCircle_C * Time.deltaTime);
+        // 更改体力
+        if(changePower){
+            globalPower.GetComponent<Text>().text = tili.ToString();
+            changePower = false;
+        }
+        tili = int.Parse(globalPower.GetComponent<Text>().text);
+        Tilitext.text = tili.ToString() + "/100";
+        slider.value = tili;
     }
 
     //判断老虎机封装,grade判断奖励大小1.small;2.midlle;3.big;
@@ -236,19 +243,15 @@ public class SlotRun : MonoBehaviour
             case 4 : // 大经验
             case 5 : // 小经验
             case 6 : if(grade==5){
-                tili = (int.Parse(globalPower.GetComponent<Text>().text) + 10 > 100?100:int.Parse(globalPower.GetComponent<Text>().text)+10);updataTili();break;
+                tili = tili + 10;
+                changePower = true;
+                break;
                 }
                 else{
                     break;
                 }
             default: break;
         }
-    }
-
-    void updataTili(){
-        Tilitext.text = tili.ToString() + "/100";
-        slider.value = tili;
-        globalPower.GetComponent<Text>().text = tili.ToString();
     }
 
     bool pdTiliAndBigExp(int reward){
@@ -270,8 +273,8 @@ public class SlotRun : MonoBehaviour
             // 实例化
             for(int i=0;i<grade;i++){
 
-                float StartX = positionX + Random.Range(-50,50);
-                float StartY = positionY + Random.Range(-50,50);
+                float StartX = positionX + Random.Range(-80,80);
+                float StartY = positionY + Random.Range(-80,80);
 
                 resource.GetComponent<GetResource>().changePicture(reward);
                 GameObject go = GameObject.Instantiate(resource, new Vector3(StartX, StartY, 0), new Quaternion());
@@ -290,10 +293,10 @@ public class SlotRun : MonoBehaviour
 
                 // 贝塞尔曲线终点位置，除了体力都在中间
                 if(reward == 6){
-                    ctrlPoints[2] = new Vector3(145, 400, 0);
+                    ctrlPoints[2] = TiliObject.transform.position;
                 }
                 else {
-                    ctrlPoints[2] = new Vector3(377, 800, 0);
+                    ctrlPoints[2] = centerObject.transform.position;
                 }
 
                 // 运动轨迹
