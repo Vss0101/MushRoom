@@ -67,6 +67,10 @@ public class SlotRun : MonoBehaviour
     public GameObject globalWindRsData;
     public GameObject globalPower;
 
+    public int betNum = 1; // 倍数
+    public Button bet; // 倍数按钮
+    public Text Bettext;
+
 
     // Start is called before the first frame update
     void Start()
@@ -118,7 +122,32 @@ public class SlotRun : MonoBehaviour
             run.enabled = false;
         }
         
-        
+    }
+
+    public void BetOnClick(){
+        switch(betNum){
+            case 1: if(tili<=10){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            else{betNum = 3;}
+            break;
+            case 3: if(tili<=50){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            else{betNum = 5;}
+            break;
+            case 5: if(tili<=200){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            else{betNum = 10;}
+            break;
+            case 10: if(tili<=500){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            else{betNum = 20;}
+            break;
+            case 20: if(tili<=1000){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            else{betNum = 50;}
+            break;
+            case 50: if(tili<=2000){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            else{betNum = 100;}
+            break;
+            case 100: betNum = 1;break;
+            default: break;
+        }
+        Bettext.text = "✖" + betNum;
     }
 
     public int GetRandom()
@@ -229,6 +258,8 @@ public class SlotRun : MonoBehaviour
         tili = int.Parse(globalPower.GetComponent<Text>().text);
         Tilitext.text = tili.ToString() + "/100";
         slider.value = tili;
+
+        bet.onClick.AddListener(delegate () { BetOnClick(); });
     }
 
     //判断老虎机封装,grade判断奖励大小1.small;2.midlle;3.big;
@@ -236,14 +267,14 @@ public class SlotRun : MonoBehaviour
         //获得四元素
         switch (reward)
         {
-            case 0 : Water = int.Parse(globalWaterRsData.GetComponent<Text>().text) + 10*grade;globalWaterRsData.GetComponent<Text>().text = Water.ToString();break;
-            case 1 : Fire = int.Parse(globalFireRsData.GetComponent<Text>().text) + 10*grade;globalFireRsData.GetComponent<Text>().text = Fire.ToString();break;
-            case 2 : Land = int.Parse(globalLandRsData.GetComponent<Text>().text) + 10*grade;globalLandRsData.GetComponent<Text>().text = Land.ToString();break;
-            case 3 : Wind = int.Parse(globalWindRsData.GetComponent<Text>().text) + 10*grade;globalWindRsData.GetComponent<Text>().text = Wind.ToString();break;
+            case 0 : Water = int.Parse(globalWaterRsData.GetComponent<Text>().text) + betNum * 10*grade;globalWaterRsData.GetComponent<Text>().text = Water.ToString();break;
+            case 1 : Fire = int.Parse(globalFireRsData.GetComponent<Text>().text) + betNum * 10*grade;globalFireRsData.GetComponent<Text>().text = Fire.ToString();break;
+            case 2 : Land = int.Parse(globalLandRsData.GetComponent<Text>().text) + betNum * 10*grade;globalLandRsData.GetComponent<Text>().text = Land.ToString();break;
+            case 3 : Wind = int.Parse(globalWindRsData.GetComponent<Text>().text) + betNum * 10*grade;globalWindRsData.GetComponent<Text>().text = Wind.ToString();break;
             case 4 : // 大经验
             case 5 : // 小经验
             case 6 : if(grade==5){
-                tili = tili + 10;
+                tili = tili + betNum * 10;
                 changePower = true;
                 break;
                 }
