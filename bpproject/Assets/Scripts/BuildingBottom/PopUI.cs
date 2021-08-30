@@ -33,7 +33,7 @@ public class PopUI : MonoBehaviour
     public Button destory;
     public GameObject destoryUI;
 
-    public Image shouldRepair;
+    public GameObject shouldRepair;
     public int uiMove;
 
     // Start is called before the first frame update
@@ -48,6 +48,7 @@ public class PopUI : MonoBehaviour
         levelUp.onClick.AddListener(delegate () { OnClickForLevelUp(); });
         characterLive.onClick.AddListener(delegate () { OnClickForLiveIn(); });
         destory.onClick.AddListener(delegate () { OnClickForDestory(); });
+        shouldRepair.GetComponent<Button>().onClick.AddListener(delegate () { OnClickForBuildingToo(); });
         uiMove = 20;
         uiUpdate();
     }
@@ -71,6 +72,11 @@ public class PopUI : MonoBehaviour
             }
         );
 
+    }
+
+    public void OnClickForBuildingToo()
+    {
+        OnClickForBuilding();
     }
 
     public void OnClickForDestory()
