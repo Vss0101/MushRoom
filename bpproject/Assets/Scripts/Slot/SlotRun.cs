@@ -111,6 +111,9 @@ public class SlotRun : MonoBehaviour
             run.enabled = false;
         }
         else{
+            if(tili - 1 * betNum<0){
+                betNum = 1;
+            }
             tili = tili - 1 * betNum;
             changePower = true;
             speedA = 0;
