@@ -24,6 +24,8 @@ public class CollectResource : MonoBehaviour
     //三份近乎重复的代码，但在经验魔力和元素收集表现间细节上有些不同
     //并且元素收集需要四种数据一起判断和收集表现，所以就算复用也需要分成两份几乎相同的代码，或者设计一个合理的接口
     //懒得设计了，怎么快怎么来
+    public Sprite empty;
+
     public Image EXPUI;
     public GameObject floatEXPUI;
     private CanvasGroup popEXPCanvasGroup;
@@ -33,6 +35,11 @@ public class CollectResource : MonoBehaviour
     private Vector3 startEXPScale;
     private Vector3 floatStartEXPPosition;
     public Text expText;
+    public Sprite smallEXP;
+    public Sprite middleEXP;
+    public Sprite bigEXP;
+    public Image bubbleEXP;
+
 
     public Image PowerUI;
     public GameObject floatPowerUI;
@@ -43,6 +50,10 @@ public class CollectResource : MonoBehaviour
     private Vector3 startPowerScale;
     private Vector3 floatStartPowerPosition;
     public Text powerText;
+    public Sprite smallPower;
+    public Sprite middlePower;
+    public Sprite bigPower;
+    public Image bubblePower;
 
     public Image ResourceUI;
     public GameObject floatResourceUI;
@@ -56,6 +67,10 @@ public class CollectResource : MonoBehaviour
     public Text fireText;
     public Text waterText;
     public Text windText;
+    public Sprite smallResource;
+    public Sprite middleResource;
+    public Sprite bigResource;
+    public Image bubbleResource;
 
     // Start is called before the first frame update
     void Start()
@@ -124,6 +139,7 @@ public class CollectResource : MonoBehaviour
             globalEXP.text = (int.Parse(globalEXP.text) +int.Parse(produceEXP.text)).ToString();
             expText.text = "+" + produceEXP.text;
             produceEXP.text = "0";
+            bubbleEXP.sprite = empty;
             Tween t = floatEXPUI.transform.DOMove(new Vector3(floatStartEXPPosition.x, floatStartEXPPosition.y + 200), 1f);
             t.OnUpdate(
             () =>
@@ -151,6 +167,7 @@ public class CollectResource : MonoBehaviour
             globalPower.text = (int.Parse(globalPower.text) + int.Parse(producePower.text)).ToString();
             powerText.text = "+" + producePower.text;
             producePower.text = "0";
+            bubblePower.sprite = empty;
             Tween t = floatPowerUI.transform.DOMove(new Vector3(floatStartPowerPosition.x, floatStartPowerPosition.y + 200), 1f);
             t.OnUpdate(
             () =>
@@ -187,6 +204,7 @@ public class CollectResource : MonoBehaviour
             produceWater.text = "0";
             produceWind.text = "0";
             produceFire.text = "0";
+            bubbleResource.sprite = empty;
             Tween t = floatResourceUI.transform.DOMove(new Vector3(floatStartResourcePosition.x, floatStartResourcePosition.y + 200), 1f);
             t.OnUpdate(
             () =>
@@ -239,6 +257,8 @@ public class CollectResource : MonoBehaviour
             EXPReset();
             popEXPCanvasGroup.alpha = 1;
             collectEXPBtn.enabled = true;
+            bubbleEXP.sprite = smallEXP;
+
         }
         else if(exp >= 10 &&exp<20)
         {
@@ -246,6 +266,7 @@ public class CollectResource : MonoBehaviour
             popEXPCanvasGroup.alpha = 1;
             collectEXPBtn.enabled = true;
             EXPUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
+            bubbleEXP.sprite = middleEXP;
         }
         else if (exp >= 20)
         {
@@ -253,6 +274,7 @@ public class CollectResource : MonoBehaviour
             popEXPCanvasGroup.alpha = 1;
             collectEXPBtn.enabled = true;
             EXPUI.transform.DOScale(new Vector3(1f, 1f), 0.5f);
+            bubbleEXP.sprite = bigEXP;
         }
     }
 
@@ -269,6 +291,7 @@ public class CollectResource : MonoBehaviour
             PowerReset();
             popPowerCanvasGroup.alpha = 1;
             collectPowerBtn.enabled = true;
+            bubblePower.sprite = smallPower;
         }
         else if (power >= 10 && power < 20)
         {
@@ -276,6 +299,7 @@ public class CollectResource : MonoBehaviour
             popPowerCanvasGroup.alpha = 1;
             collectPowerBtn.enabled = true;
             PowerUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
+            bubblePower.sprite = middlePower;
         }
         else if (power >= 20)
         {
@@ -283,6 +307,7 @@ public class CollectResource : MonoBehaviour
             popPowerCanvasGroup.alpha = 1;
             collectPowerBtn.enabled = true;
             PowerUI.transform.DOScale(new Vector3(1f, 1f), 0.5f);
+            bubblePower.sprite = bigPower;
         }
     }
 
@@ -299,6 +324,7 @@ public class CollectResource : MonoBehaviour
             ResourceReset();
             popResourceCanvasGroup.alpha = 1;
             collectResourceBtn.enabled = true;
+            bubbleResource.sprite = smallResource;
         }
         else if (resource >= 40 && resource < 80)
         {
@@ -306,6 +332,7 @@ public class CollectResource : MonoBehaviour
             popResourceCanvasGroup.alpha = 1;
             collectResourceBtn.enabled = true;
             ResourceUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
+            bubbleResource.sprite = middleResource;
         }
         else if (resource >= 80)
         {
@@ -313,6 +340,7 @@ public class CollectResource : MonoBehaviour
             popResourceCanvasGroup.alpha = 1;
             collectResourceBtn.enabled = true;
             ResourceUI.transform.DOScale(new Vector3(1f, 1f), 0.5f);
+            bubbleResource.sprite = bigResource;
         }
     }
 }
