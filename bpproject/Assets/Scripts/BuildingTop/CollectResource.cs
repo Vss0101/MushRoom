@@ -72,12 +72,42 @@ public class CollectResource : MonoBehaviour
     public Sprite bigResource;
     public Image bubbleResource;
 
+    public int uiMove;
+    public bool isScaleDown;
+
     // Start is called before the first frame update
     void Start()
     {
         startEXP();
         startPower();
         startResource();
+        isScaleDown = true;
+        uiUpdate();
+        uiMove = 20;
+    }
+
+    public void uiUpdate()
+    {
+        float time = 0;
+        if (uiMove > 0)
+        {
+            time = 1.5f;
+        }
+        else
+        {
+            time = 0.5f;
+        }
+        Tween t = PowerUI.transform.DOMove(new Vector3(PowerUI.transform.position.x, PowerUI.transform.position.y + uiMove), time);
+        EXPUI.transform.DOMove(new Vector3(EXPUI.transform.position.x, EXPUI.transform.position.y + uiMove), time);
+        ResourceUI.transform.DOMove(new Vector3(ResourceUI.transform.position.x, ResourceUI.transform.position.y + uiMove), time);
+        t.OnComplete(
+            () =>
+            {
+                uiMove *= -1;
+                uiUpdate();
+            }
+        );
+
     }
 
     public void startEXP()
@@ -140,6 +170,7 @@ public class CollectResource : MonoBehaviour
             expText.text = "+" + produceEXP.text;
             produceEXP.text = "0";
             bubbleEXP.sprite = empty;
+            EXPReset();
             Tween t = floatEXPUI.transform.DOMove(new Vector3(floatStartEXPPosition.x, floatStartEXPPosition.y + 200), 1f);
             t.OnUpdate(
             () =>
@@ -168,6 +199,7 @@ public class CollectResource : MonoBehaviour
             powerText.text = "+" + producePower.text;
             producePower.text = "0";
             bubblePower.sprite = empty;
+            PowerReset();
             Tween t = floatPowerUI.transform.DOMove(new Vector3(floatStartPowerPosition.x, floatStartPowerPosition.y + 200), 1f);
             t.OnUpdate(
             () =>
@@ -205,6 +237,7 @@ public class CollectResource : MonoBehaviour
             produceWind.text = "0";
             produceFire.text = "0";
             bubbleResource.sprite = empty;
+            ResourceReset();
             Tween t = floatResourceUI.transform.DOMove(new Vector3(floatStartResourcePosition.x, floatStartResourcePosition.y + 200), 1f);
             t.OnUpdate(
             () =>
@@ -227,6 +260,7 @@ public class CollectResource : MonoBehaviour
     {
         EXPUI.transform.position = startEXPPosition;
         EXPUI.transform.localScale = startEXPScale;
+        EXPUI.transform.DOScale(new Vector3(0.55f, 0.55f), 0.5f);
         floatEXPUI.transform.position = floatStartEXPPosition;
     }
 
@@ -234,6 +268,7 @@ public class CollectResource : MonoBehaviour
     {
         PowerUI.transform.position = startPowerPosition;
         PowerUI.transform.localScale = startPowerScale;
+        PowerUI.transform.DOScale(new Vector3(0.55f, 0.55f), 0.5f);
         floatPowerUI.transform.position = floatStartPowerPosition;
     }
 
@@ -241,28 +276,30 @@ public class CollectResource : MonoBehaviour
     {
         ResourceUI.transform.position = startResourcePosition;
         ResourceUI.transform.localScale = startResourceScale;
+        ResourceUI.transform.DOScale(new Vector3(0.55f, 0.55f), 0.5f);
         floatResourceUI.transform.position = floatStartResourcePosition;
     }
 
     public void EXPUpdate()
     {
+
         int exp = (int.Parse(produceEXP.text));
-        if (exp >=2 && exp <5)
+        if (exp >= 2 && exp < 5)
         {
-            EXPReset();
             popEXPCanvasGroup.alpha = 0.3f;
+            EXPUI.transform.DOScale(new Vector3(0.55f, 0.55f), 0.5f);
+            //Debug.Log(startEXPScale);
         }
-        else if ( exp>= 5 && exp <10)
+        else if (exp >= 5 && exp < 10)
         {
-            EXPReset();
             popEXPCanvasGroup.alpha = 1;
             collectEXPBtn.enabled = true;
             bubbleEXP.sprite = smallEXP;
+            EXPUI.transform.DOScale(new Vector3(0.55f, 0.55f), 0.5f);
 
         }
-        else if(exp >= 10 &&exp<20)
+        else if (exp >= 10 && exp < 20)
         {
-            EXPReset();
             popEXPCanvasGroup.alpha = 1;
             collectEXPBtn.enabled = true;
             EXPUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
@@ -270,12 +307,12 @@ public class CollectResource : MonoBehaviour
         }
         else if (exp >= 20)
         {
-            EXPReset();
             popEXPCanvasGroup.alpha = 1;
             collectEXPBtn.enabled = true;
             EXPUI.transform.DOScale(new Vector3(1f, 1f), 0.5f);
             bubbleEXP.sprite = bigEXP;
         }
+
     }
 
     public void PowerUpdate()
@@ -283,19 +320,19 @@ public class CollectResource : MonoBehaviour
         int power = (int.Parse(producePower.text));
         if (power >= 2 && power < 5)
         {
-            PowerReset();
             popPowerCanvasGroup.alpha = 0.3f;
+            PowerUI.transform.DOScale(new Vector3(0.55f, 0.55f), 0.5f);
         }
         else if (power >= 5 && power < 10)
         {
-            PowerReset();
             popPowerCanvasGroup.alpha = 1;
             collectPowerBtn.enabled = true;
             bubblePower.sprite = smallPower;
+            PowerUI.transform.DOScale(new Vector3(0.55f, 0.55f), 0.5f);
+
         }
         else if (power >= 10 && power < 20)
         {
-            PowerReset();
             popPowerCanvasGroup.alpha = 1;
             collectPowerBtn.enabled = true;
             PowerUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
@@ -303,7 +340,6 @@ public class CollectResource : MonoBehaviour
         }
         else if (power >= 20)
         {
-            PowerReset();
             popPowerCanvasGroup.alpha = 1;
             collectPowerBtn.enabled = true;
             PowerUI.transform.DOScale(new Vector3(1f, 1f), 0.5f);
@@ -316,19 +352,18 @@ public class CollectResource : MonoBehaviour
         int resource = int.Parse(produceLand.text)+ int.Parse(produceWater.text)+ int.Parse(produceWind.text)+ int.Parse(produceFire.text);
         if (resource >= 8 && resource < 20)
         {
-            ResourceReset();
             popResourceCanvasGroup.alpha = 0.3f;
+            ResourceUI.transform.DOScale(new Vector3(0.55f, 0.55f), 0.5f);
         }
         else if (resource >= 20 && resource < 40)
         {
-            ResourceReset();
             popResourceCanvasGroup.alpha = 1;
             collectResourceBtn.enabled = true;
             bubbleResource.sprite = smallResource;
+            ResourceUI.transform.DOScale(new Vector3(0.55f, 0.55f), 0.5f);
         }
         else if (resource >= 40 && resource < 80)
         {
-            ResourceReset();
             popResourceCanvasGroup.alpha = 1;
             collectResourceBtn.enabled = true;
             ResourceUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
@@ -336,7 +371,6 @@ public class CollectResource : MonoBehaviour
         }
         else if (resource >= 80)
         {
-            ResourceReset();
             popResourceCanvasGroup.alpha = 1;
             collectResourceBtn.enabled = true;
             ResourceUI.transform.DOScale(new Vector3(1f, 1f), 0.5f);
