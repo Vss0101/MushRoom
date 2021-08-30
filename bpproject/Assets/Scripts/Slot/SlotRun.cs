@@ -111,7 +111,7 @@ public class SlotRun : MonoBehaviour
             run.enabled = false;
         }
         else{
-            tili = tili - 1;
+            tili = tili - 1 * betNum;
             changePower = true;
             speedA = 0;
             speedB = 0;
