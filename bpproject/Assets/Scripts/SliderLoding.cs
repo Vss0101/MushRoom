@@ -18,6 +18,7 @@ public class SliderLoding : MonoBehaviour
 	void Start () 
     {
         cur = 0;
+        show();
 	}
 	void Update () 
     {
@@ -32,6 +33,10 @@ public class SliderLoding : MonoBehaviour
             //GameMain.SetActive(true);
         }
         cur = cur + 1;
+        show();
+    }
+
+    void show(){
         slider.value = cur;
         //显示百分比
         text.text = cur.ToString() + "%";
