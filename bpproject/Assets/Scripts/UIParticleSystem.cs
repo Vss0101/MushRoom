@@ -71,7 +71,7 @@ namespace UnityEngine.UI.Extensions
                     pRenderer.enabled = false;
 
                 Shader foundShader = Shader.Find("UI Extensions/Particles/Additive");
-                Material pMaterial = new Material(foundShader);
+                Material pMaterial = new Material(foundShader);git
 
                 if (material == null)
                     material = pMaterial;
