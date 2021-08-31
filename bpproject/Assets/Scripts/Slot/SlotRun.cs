@@ -98,6 +98,7 @@ public class SlotRun : MonoBehaviour
         //体力初始化
         tili = int.Parse(globalPower.GetComponent<Text>().text);
         slider.value = tili;
+        bet.onClick.AddListener(delegate () { BetOnClick(); });
         Tilitext.text = tili + "/100";
 
         run.onClick.AddListener(delegate () { OnClick(); });
@@ -129,22 +130,22 @@ public class SlotRun : MonoBehaviour
 
     public void BetOnClick(){
         switch(betNum){
-            case 1: if(tili<=10){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            case 1: if(tili<=10){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
             else{betNum = 3;}
             break;
-            case 3: if(tili<=50){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            case 3: if(tili<=50){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
             else{betNum = 5;}
             break;
-            case 5: if(tili<=200){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            case 5: if(tili<=200){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
             else{betNum = 10;}
             break;
-            case 10: if(tili<=500){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            case 10: if(tili<=500){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
             else{betNum = 20;}
             break;
-            case 20: if(tili<=1000){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            case 20: if(tili<=1000){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
             else{betNum = 50;}
             break;
-            case 50: if(tili<=2000){tip.GetMessage("最大倍数为"+betNum.ToString());}
+            case 50: if(tili<=2000){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
             else{betNum = 100;}
             break;
             case 100: betNum = 1;break;
@@ -261,8 +262,6 @@ public class SlotRun : MonoBehaviour
         tili = int.Parse(globalPower.GetComponent<Text>().text);
         Tilitext.text = tili.ToString() + "/100";
         slider.value = tili;
-
-        bet.onClick.AddListener(delegate () { BetOnClick(); });
     }
 
     //判断老虎机封装,grade判断奖励大小1.small;2.midlle;3.big;
