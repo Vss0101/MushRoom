@@ -112,8 +112,9 @@ public class SlotRun : MonoBehaviour
             run.enabled = false;
         }
         else{
-            if(tili - 1 * betNum<0){
+            if(tili - 1 * betNum<=0){
                 betNum = 1;
+                Bettext.text = "✖" + betNum;
             }
             tili = tili - 1 * betNum;
             changePower = true;
@@ -273,8 +274,8 @@ public class SlotRun : MonoBehaviour
             case 1 : Fire = int.Parse(globalFireRsData.GetComponent<Text>().text) + betNum * 10*grade;globalFireRsData.GetComponent<Text>().text = Fire.ToString();break;
             case 2 : Land = int.Parse(globalLandRsData.GetComponent<Text>().text) + betNum * 10*grade;globalLandRsData.GetComponent<Text>().text = Land.ToString();break;
             case 3 : Wind = int.Parse(globalWindRsData.GetComponent<Text>().text) + betNum * 10*grade;globalWindRsData.GetComponent<Text>().text = Wind.ToString();break;
-            case 4 : // 大经验
-            case 5 : // 小经验
+            case 4 : break;// 大经验
+            case 5 : break;// 小经验
             case 6 : if(grade==5){
                 tili = tili + betNum * 10;
                 changePower = true;
