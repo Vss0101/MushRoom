@@ -31,7 +31,7 @@ public class Message : MonoBehaviour
     }
 
     void GoBack(){
-        Image.transform.DOMove(new Vector3(gameObject.transform.position.x, Image.transform.position.y + 300, 0), 0.8f);
+        Image.transform.DOMove(new Vector3(gameObject.transform.position.x, Image.transform.position.y + 200, 0), 0.8f);
     }
 
 
