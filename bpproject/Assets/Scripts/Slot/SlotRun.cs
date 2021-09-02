@@ -109,7 +109,7 @@ public class SlotRun : MonoBehaviour
     {
         if(tili<=0){
             tip.GetMessage("没有体力啦");
-            run.enabled = false;
+            //run.enabled = false;
         }
         else{
             if(tili - 1 * betNum<=0){
@@ -122,7 +122,6 @@ public class SlotRun : MonoBehaviour
             speedB = 0;
             speedC = 0;
             SlotGo();
-
             //禁用祈祷按钮，防止玩家疯狂按
             run.enabled = false;
         }
