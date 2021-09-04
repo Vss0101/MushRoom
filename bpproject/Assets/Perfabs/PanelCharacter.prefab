@@ -92,7 +92,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8412876483334137103
 RectTransform:
   m_ObjectHideFlags: 0
@@ -267,7 +267,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 219, y: 594}
+  m_AnchoredPosition: {x: 219, y: 508}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8720091433879847687
@@ -456,10 +456,10 @@ RectTransform:
   m_Father: {fileID: 8251588131551958164}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 562.5, y: -1667.5}
+  m_SizeDelta: {x: 375, y: 667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2850915065376921312
 CanvasRenderer:
@@ -550,6 +550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterItemPanel: {fileID: 4016946548323622091}
   tablePanelForCharacter: {fileID: 0}
+  tableBarForHome: {fileID: 0}
 --- !u!1 &1336427980999499363
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +664,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 219, y: 594}
+  m_AnchoredPosition: {x: 219, y: 508}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4143118216434615568
@@ -921,7 +922,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 219, y: 594}
+  m_AnchoredPosition: {x: 219, y: 508}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &579227323251599782
@@ -1068,7 +1069,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3bf42bb5b216c7b4dadd4962bca9f16d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d1dcdc9cf299de4e8f03b3f359b6b25, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1091,6 +1092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goBack: {fileID: 3593427562778813188}
   tablePanelForCharacter: {fileID: 0}
+  tableBarForHome: {fileID: 0}
 --- !u!1 &4295415854641837699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,7 +1235,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3bf42bb5b216c7b4dadd4962bca9f16d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18ab0f7444bf0124cabca31ae6b3486d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1320,7 +1322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3bf42bb5b216c7b4dadd4962bca9f16d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18ab0f7444bf0124cabca31ae6b3486d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1376,10 +1378,10 @@ RectTransform:
   m_Father: {fileID: 8251588131551958164}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 187.5, y: -1667.5}
+  m_SizeDelta: {x: 375, y: 667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2749897967450303392
 CanvasRenderer:
@@ -1470,6 +1472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterItemPanel: {fileID: 4016946548323622091}
   tablePanelForCharacter: {fileID: 0}
+  tableBarForHome: {fileID: 0}
 --- !u!1 &7913464958204245333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,10 +1507,10 @@ RectTransform:
   m_Father: {fileID: 8251588131551958164}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 562.5, y: -333.5}
+  m_SizeDelta: {x: 375, y: 667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2893639472847451337
 CanvasRenderer:
@@ -1598,6 +1601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterItemPanel: {fileID: 4016946548323622091}
   tablePanelForCharacter: {fileID: 0}
+  tableBarForHome: {fileID: 0}
 --- !u!1 &8219904501378608490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,10 +1636,10 @@ RectTransform:
   m_Father: {fileID: 8251588131551958164}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 187.5, y: -1000.5}
+  m_SizeDelta: {x: 375, y: 667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8294790406548162009
 CanvasRenderer:
@@ -1726,6 +1730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterItemPanel: {fileID: 4016946548323622091}
   tablePanelForCharacter: {fileID: 0}
+  tableBarForHome: {fileID: 0}
 --- !u!1 &8251588130849466793
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,7 +1876,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 2001}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8251588131551958166
 MonoBehaviour:
@@ -2032,10 +2037,10 @@ RectTransform:
   m_Father: {fileID: 8251588131551958164}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 187.5, y: -333.5}
+  m_SizeDelta: {x: 375, y: 667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8251588132152715620
 CanvasRenderer:
@@ -2126,6 +2131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterItemPanel: {fileID: 4016946548323622091}
   tablePanelForCharacter: {fileID: 0}
+  tableBarForHome: {fileID: 0}
 --- !u!1 &8354333472155953659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,10 +2320,10 @@ RectTransform:
   m_Father: {fileID: 8251588131551958164}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 562.5, y: -1000.5}
+  m_SizeDelta: {x: 375, y: 667}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5298498973790023289
 CanvasRenderer:
@@ -2408,6 +2414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterItemPanel: {fileID: 4016946548323622091}
   tablePanelForCharacter: {fileID: 0}
+  tableBarForHome: {fileID: 0}
 --- !u!1 &9211066087031683987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2473,7 +2480,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3bf42bb5b216c7b4dadd4962bca9f16d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 18ab0f7444bf0124cabca31ae6b3486d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
