@@ -1,3 +1,4 @@
+using System.ComponentModel;
 //using System.Numerics;
 using System.Reflection;
 using System.Linq.Expressions;
@@ -47,6 +48,7 @@ public class SlotRun : MonoBehaviour
     public int[] rewards;//奖励列表
     public GameObject resource;//弹出的奖励图标
     public GameObject[] rewardsPosition;//奖励列表对应的位置
+    public GameObject ExpPosition;
 
     public Text Tilitext;//显示体力
     public Slider slider;//体力条
@@ -66,10 +68,17 @@ public class SlotRun : MonoBehaviour
     public GameObject globalFireRsData;
     public GameObject globalWindRsData;
     public GameObject globalPower;
+    public GameObject globalExp;
 
     public int betNum = 1; // 倍数
     public Button bet; // 倍数按钮
     public Text Bettext;
+
+    public int exp;// 经验
+    public Text expText;
+    public bool changeExp = false;
+
+    public int SlotTime = 0;// 保底转到大奖次数
 
 
     // Start is called before the first frame update
@@ -101,23 +110,32 @@ public class SlotRun : MonoBehaviour
         bet.onClick.AddListener(delegate () { BetOnClick(); });
         Tilitext.text = tili + "/100";
 
-        run.onClick.AddListener(delegate () { OnClick(); });
+        exp = int.Parse(globalExp.GetComponent<Text>().text);
+        expText.text = "✖" + exp;
+
+        run.onClick.AddListener(delegate () { ClickChangeP(); });
+    }
+
+    public void ClickChangeP(){
+        run.image.sprite = Resources.Load<Sprite>("开始按钮背景点击");
+        Invoke("OnClick",0.05f);
     }
 
     //点击按钮后开始调用老虎机转动函数
     public void OnClick()
     {
+        run.image.sprite = Resources.Load<Sprite>("开始按钮背景");
         if(tili<=0){
             tip.GetMessage("没有体力啦");
-            //run.enabled = false;
         }
         else{
             if(tili - 1 * betNum<=0){
                 betNum = 1;
-                Bettext.text = "✖" + betNum;
+                Bettext.text = betNum.ToString();
             }
             tili = tili - 1 * betNum;
             changePower = true;
+            SlotTime++;
             speedA = 0;
             speedB = 0;
             speedC = 0;
@@ -151,12 +169,18 @@ public class SlotRun : MonoBehaviour
             case 100: betNum = 1;break;
             default: break;
         }
-        Bettext.text = "✖" + betNum;
+        Bettext.text =" " + betNum;
     }
 
     public int GetRandom()
     {
-        return Random.Range(0, 7);
+        if(SlotTime==10){
+            SlotTime = 0;
+            return 6;
+        }
+        else{
+            return Random.Range(0, 7);
+        }
     }
 
     public void ReverseStopFlag()
@@ -187,7 +211,7 @@ public class SlotRun : MonoBehaviour
     public void GetMiddleReward(int reward)
     {
         //调用闪烁函数
-        if(!pdTiliAndBigExp(reward)){
+        if(!pdTiliAndSmallExp(reward)){
             rewardsPosition[reward].GetComponent<HaloControl>().run = true;
             showRewardDh(reward,5);
         }
@@ -197,15 +221,15 @@ public class SlotRun : MonoBehaviour
     public void GetSmallReward(int rewardA,int rewardB,int rewardC)
     {
         //调用闪烁函数
-        if(!pdTiliAndBigExp(rewardA)){
+        if(!pdTiliAndSmallExp(rewardA)){
             rewardsPosition[rewardA].GetComponent<HaloControl>().run = true;
             showRewardDh(rewardA,3);
         }
-        if(!pdTiliAndBigExp(rewardB)){
+        if(!pdTiliAndSmallExp(rewardB)){
             rewardsPosition[rewardB].GetComponent<HaloControl>().run = true;
             showRewardDh(rewardB,3);
         }
-        if(!pdTiliAndBigExp(rewardC)){
+        if(!pdTiliAndSmallExp(rewardC)){
             rewardsPosition[rewardC].GetComponent<HaloControl>().run = true;
             showRewardDh(rewardC,3);
         }
@@ -262,6 +286,14 @@ public class SlotRun : MonoBehaviour
         tili = int.Parse(globalPower.GetComponent<Text>().text);
         Tilitext.text = tili.ToString() + "/100";
         slider.value = tili;
+
+        // 更改经验
+        if(changeExp){
+            globalExp.GetComponent<Text>().text = exp.ToString();
+            changeExp = false;
+        }
+        exp = int.Parse(globalExp.GetComponent<Text>().text);
+        expText.text = "✖" + exp;
     }
 
     //判断老虎机封装,grade判断奖励大小1.small;2.midlle;3.big;
@@ -273,9 +305,23 @@ public class SlotRun : MonoBehaviour
             case 1 : Fire = int.Parse(globalFireRsData.GetComponent<Text>().text) + betNum * 10*grade;globalFireRsData.GetComponent<Text>().text = Fire.ToString();break;
             case 2 : Land = int.Parse(globalLandRsData.GetComponent<Text>().text) + betNum * 10*grade;globalLandRsData.GetComponent<Text>().text = Land.ToString();break;
             case 3 : Wind = int.Parse(globalWindRsData.GetComponent<Text>().text) + betNum * 10*grade;globalWindRsData.GetComponent<Text>().text = Wind.ToString();break;
-            case 4 : break;// 大经验
-            case 5 : break;// 小经验
-            case 6 : if(grade==5){
+            case 4 : if(grade == 1){
+                exp = exp + 300;
+                changeExp = true;
+            }
+            else if(grade==3){
+                exp = exp + 900;
+                changeExp = true;
+            }
+            else{
+                exp = exp + 2000;
+                changeExp = true;
+            }break;// 大经验
+            case 5 : if(grade == 5){
+                exp = exp + 500;
+                changeExp = true;
+            }break;// 小经验
+            case 6 : if(grade == 5){
                 tili = tili + betNum * 10;
                 changePower = true;
                 break;
@@ -283,12 +329,16 @@ public class SlotRun : MonoBehaviour
                 else{
                     break;
                 }
+            case 7 : if(grade == 5){
+                exp = exp + 500;
+                changeExp = true;
+            }break;
             default: break;
         }
     }
 
-    bool pdTiliAndBigExp(int reward){
-        if(reward == 6 || reward == 4){
+    bool pdTiliAndSmallExp(int reward){
+        if((reward == 6 || reward == 5)||reward == 7){
             return true;
         }
         else{
@@ -327,6 +377,9 @@ public class SlotRun : MonoBehaviour
                 // 贝塞尔曲线终点位置，除了体力都在中间
                 if(reward == 6){
                     ctrlPoints[2] = TiliObject.transform.position;
+                }
+                else if((reward == 4 || reward == 5) ||reward == 7){
+                    ctrlPoints[2] = ExpPosition.transform.position;
                 }
                 else {
                     ctrlPoints[2] = centerObject.transform.position;
