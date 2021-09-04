@@ -41,6 +41,7 @@ public class NotRepairUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resource.sprite = sLand;
         darkLight = land.sprite;
         land.sprite = highLight;
         text.text = "Consume 100 Earth elements to repair the building";

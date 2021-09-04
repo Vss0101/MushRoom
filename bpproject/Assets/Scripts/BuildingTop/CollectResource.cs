@@ -302,14 +302,14 @@ public class CollectResource : MonoBehaviour
         {
             popEXPCanvasGroup.alpha = 1;
             collectEXPBtn.enabled = true;
-            EXPUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
+            EXPUI.transform.DOScale(new Vector3(0.65f, 0.65f), 0.5f);
             bubbleEXP.sprite = middleEXP;
         }
         else if (exp >= 20)
         {
             popEXPCanvasGroup.alpha = 1;
             collectEXPBtn.enabled = true;
-            EXPUI.transform.DOScale(new Vector3(1f, 1f), 0.5f);
+            EXPUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
             bubbleEXP.sprite = bigEXP;
         }
 
@@ -335,14 +335,14 @@ public class CollectResource : MonoBehaviour
         {
             popPowerCanvasGroup.alpha = 1;
             collectPowerBtn.enabled = true;
-            PowerUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
+            PowerUI.transform.DOScale(new Vector3(0.65f, 0.65f), 0.5f);
             bubblePower.sprite = middlePower;
         }
         else if (power >= 20)
         {
             popPowerCanvasGroup.alpha = 1;
             collectPowerBtn.enabled = true;
-            PowerUI.transform.DOScale(new Vector3(1f, 1f), 0.5f);
+            PowerUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
             bubblePower.sprite = bigPower;
         }
     }
@@ -366,14 +366,14 @@ public class CollectResource : MonoBehaviour
         {
             popResourceCanvasGroup.alpha = 1;
             collectResourceBtn.enabled = true;
-            ResourceUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
+            ResourceUI.transform.DOScale(new Vector3(0.65f, 0.65f), 0.5f);
             bubbleResource.sprite = middleResource;
         }
         else if (resource >= 80)
         {
             popResourceCanvasGroup.alpha = 1;
             collectResourceBtn.enabled = true;
-            ResourceUI.transform.DOScale(new Vector3(1f, 1f), 0.5f);
+            ResourceUI.transform.DOScale(new Vector3(0.8f, 0.8f), 0.5f);
             bubbleResource.sprite = bigResource;
         }
     }

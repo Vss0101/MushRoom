@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 53ee7accea7893440adb0aa71d9e121b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a5e4a57e7776e714fbd1a4a1582769cf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2084,7 +2084,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e189df47be5700d48a182ec48d220367, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c6a3eacf1f6965a48b387ae0193ce216, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2138,7 +2138,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -8, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &775964310
@@ -2858,7 +2858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 349e45f1e79fbe24d80b2fd689fb80db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b1c3f3679a14d2459c68965d4905f09, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5230,22 +5230,22 @@ PrefabInstance:
     - target: {fileID: 4887889779941627222, guid: 0c64a07940506064c89b0439d3297e96,
         type: 3}
       propertyPath: m_Text
-      value: 10000
+      value: 20000
       objectReference: {fileID: 0}
     - target: {fileID: 4887889781095689183, guid: 0c64a07940506064c89b0439d3297e96,
         type: 3}
       propertyPath: m_Text
-      value: 10000
+      value: 20000
       objectReference: {fileID: 0}
     - target: {fileID: 4887889781224228256, guid: 0c64a07940506064c89b0439d3297e96,
         type: 3}
       propertyPath: m_Text
-      value: 10000
+      value: 20000
       objectReference: {fileID: 0}
     - target: {fileID: 4887889781662632529, guid: 0c64a07940506064c89b0439d3297e96,
         type: 3}
       propertyPath: m_Text
-      value: 10000
+      value: 20000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c64a07940506064c89b0439d3297e96, type: 3}
@@ -5807,7 +5807,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8bb98d2f72feed040a088ad6a7f6813a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 60207885f0fb498479136a521ca887dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6206,6 +6206,54 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 537975087, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalUnlockData
+      value: 
+      objectReference: {fileID: 1210637945}
+    - target: {fileID: 537975087, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalLand
+      value: 
+      objectReference: {fileID: 650460618}
+    - target: {fileID: 537975087, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalWater
+      value: 
+      objectReference: {fileID: 1126229249}
+    - target: {fileID: 537975087, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalWind
+      value: 
+      objectReference: {fileID: 1737627518}
+    - target: {fileID: 537975087, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalFire
+      value: 
+      objectReference: {fileID: 1255118495}
+    - target: {fileID: 537975087, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: tips
+      value: 
+      objectReference: {fileID: 1622118754}
+    - target: {fileID: 923262581, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalUnlockData
+      value: 
+      objectReference: {fileID: 1210637945}
+    - target: {fileID: 923262581, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalLand
+      value: 
+      objectReference: {fileID: 650460618}
+    - target: {fileID: 923262581, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalWater
+      value: 
+      objectReference: {fileID: 1126229249}
+    - target: {fileID: 923262581, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalWind
+      value: 
+      objectReference: {fileID: 1737627518}
+    - target: {fileID: 923262581, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalFire
+      value: 
+      objectReference: {fileID: 1255118495}
+    - target: {fileID: 923262581, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: tips
+      value: 
+      objectReference: {fileID: 1622118754}
     - target: {fileID: 1028223944, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -6238,6 +6286,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1524553497, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalUnlockData
+      value: 
+      objectReference: {fileID: 1210637945}
+    - target: {fileID: 1524553497, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalLand
+      value: 
+      objectReference: {fileID: 650460618}
+    - target: {fileID: 1524553497, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalWater
+      value: 
+      objectReference: {fileID: 1126229249}
+    - target: {fileID: 1524553497, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalWind
+      value: 
+      objectReference: {fileID: 1737627518}
+    - target: {fileID: 1524553497, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: globalFire
+      value: 
+      objectReference: {fileID: 1255118495}
+    - target: {fileID: 1524553497, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
+      propertyPath: tips
+      value: 
+      objectReference: {fileID: 1622118754}
     - target: {fileID: 1949746072, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -6328,11 +6400,6 @@ PrefabInstance:
       propertyPath: globalWind
       value: 
       objectReference: {fileID: 1737627518}
-    - target: {fileID: 666720939841854961, guid: abf54ec84d484ef4ca89508406ae7b87,
-        type: 3}
-      propertyPath: globalUnlockData
-      value: 
-      objectReference: {fileID: 1210637945}
     - target: {fileID: 666720939885616723, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
       propertyPath: switchBackround
@@ -6398,26 +6465,36 @@ PrefabInstance:
       propertyPath: globalLand
       value: 
       objectReference: {fileID: 650460618}
-    - target: {fileID: 666720940390155104, guid: abf54ec84d484ef4ca89508406ae7b87,
-        type: 3}
-      propertyPath: globalUnlockData
-      value: 
-      objectReference: {fileID: 1210637945}
-    - target: {fileID: 666720940642735386, guid: abf54ec84d484ef4ca89508406ae7b87,
+    - target: {fileID: 666720940855161585, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
       propertyPath: globalUnlockData
       value: 
       objectReference: {fileID: 1210637945}
     - target: {fileID: 666720940855161585, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
-      propertyPath: globalUnlockData
+      propertyPath: globalLand
       value: 
-      objectReference: {fileID: 1210637945}
-    - target: {fileID: 666720940876772370, guid: abf54ec84d484ef4ca89508406ae7b87,
+      objectReference: {fileID: 650460618}
+    - target: {fileID: 666720940855161585, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
-      propertyPath: globalUnlockData
+      propertyPath: globalWater
       value: 
-      objectReference: {fileID: 1210637945}
+      objectReference: {fileID: 1126229249}
+    - target: {fileID: 666720940855161585, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalWind
+      value: 
+      objectReference: {fileID: 1737627518}
+    - target: {fileID: 666720940855161585, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalFire
+      value: 
+      objectReference: {fileID: 1255118495}
+    - target: {fileID: 666720940855161585, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: tips
+      value: 
+      objectReference: {fileID: 1622118754}
     - target: {fileID: 666720940998518389, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
       propertyPath: switchBackround
@@ -6428,26 +6505,11 @@ PrefabInstance:
       propertyPath: switchBackround
       value: 
       objectReference: {fileID: 396808012}
-    - target: {fileID: 666720941167310259, guid: abf54ec84d484ef4ca89508406ae7b87,
-        type: 3}
-      propertyPath: globalUnlockData
-      value: 
-      objectReference: {fileID: 1210637945}
     - target: {fileID: 666720941188127388, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
       propertyPath: switchBackround
       value: 
       objectReference: {fileID: 396808012}
-    - target: {fileID: 666720941660298401, guid: abf54ec84d484ef4ca89508406ae7b87,
-        type: 3}
-      propertyPath: globalUnlockData
-      value: 
-      objectReference: {fileID: 1210637945}
-    - target: {fileID: 666720941699985130, guid: abf54ec84d484ef4ca89508406ae7b87,
-        type: 3}
-      propertyPath: globalUnlockData
-      value: 
-      objectReference: {fileID: 1210637945}
     - target: {fileID: 1502896223166076525, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
       propertyPath: globalFire
@@ -6578,6 +6640,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3380213301222065217, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalUnlockData
+      value: 
+      objectReference: {fileID: 1210637945}
+    - target: {fileID: 3380213301222065217, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalLand
+      value: 
+      objectReference: {fileID: 650460618}
+    - target: {fileID: 3380213301222065217, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalWater
+      value: 
+      objectReference: {fileID: 1126229249}
+    - target: {fileID: 3380213301222065217, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalWind
+      value: 
+      objectReference: {fileID: 1737627518}
+    - target: {fileID: 3380213301222065217, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalFire
+      value: 
+      objectReference: {fileID: 1255118495}
+    - target: {fileID: 3380213301222065217, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: tips
+      value: 
+      objectReference: {fileID: 1622118754}
     - target: {fileID: 3679402155391646589, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -6673,11 +6765,71 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5414636315749352776, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalUnlockData
+      value: 
+      objectReference: {fileID: 1210637945}
+    - target: {fileID: 5414636315749352776, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalLand
+      value: 
+      objectReference: {fileID: 650460618}
+    - target: {fileID: 5414636315749352776, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalWater
+      value: 
+      objectReference: {fileID: 1126229249}
+    - target: {fileID: 5414636315749352776, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalWind
+      value: 
+      objectReference: {fileID: 1737627518}
+    - target: {fileID: 5414636315749352776, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalFire
+      value: 
+      objectReference: {fileID: 1255118495}
+    - target: {fileID: 5414636315749352776, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: tips
+      value: 
+      objectReference: {fileID: 1622118754}
     - target: {fileID: 5480499615801378452, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6273530391253459822, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalUnlockData
+      value: 
+      objectReference: {fileID: 1210637945}
+    - target: {fileID: 6273530391253459822, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalLand
+      value: 
+      objectReference: {fileID: 650460618}
+    - target: {fileID: 6273530391253459822, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalWater
+      value: 
+      objectReference: {fileID: 1126229249}
+    - target: {fileID: 6273530391253459822, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalWind
+      value: 
+      objectReference: {fileID: 1737627518}
+    - target: {fileID: 6273530391253459822, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalFire
+      value: 
+      objectReference: {fileID: 1255118495}
+    - target: {fileID: 6273530391253459822, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: tips
+      value: 
+      objectReference: {fileID: 1622118754}
     - target: {fileID: 6553207200458391785, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -6702,11 +6854,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PanelBuilding
-      objectReference: {fileID: 0}
-    - target: {fileID: 6754118972687554473, guid: abf54ec84d484ef4ca89508406ae7b87,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7218148692304356106, guid: abf54ec84d484ef4ca89508406ae7b87,
         type: 3}
@@ -6873,6 +7020,36 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8734391963060816444, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalUnlockData
+      value: 
+      objectReference: {fileID: 1210637945}
+    - target: {fileID: 8734391963060816444, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalLand
+      value: 
+      objectReference: {fileID: 650460618}
+    - target: {fileID: 8734391963060816444, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalWater
+      value: 
+      objectReference: {fileID: 1126229249}
+    - target: {fileID: 8734391963060816444, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalWind
+      value: 
+      objectReference: {fileID: 1737627518}
+    - target: {fileID: 8734391963060816444, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: globalFire
+      value: 
+      objectReference: {fileID: 1255118495}
+    - target: {fileID: 8734391963060816444, guid: abf54ec84d484ef4ca89508406ae7b87,
+        type: 3}
+      propertyPath: tips
+      value: 
+      objectReference: {fileID: 1622118754}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abf54ec84d484ef4ca89508406ae7b87, type: 3}
 --- !u!1001 &3036743857881983422
@@ -7005,6 +7182,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PanelC
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105889829731146106, guid: dc6d826ccc8307847ae1e6635708d4be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4105889829731146107, guid: dc6d826ccc8307847ae1e6635708d4be,
         type: 3}
@@ -7149,7 +7331,7 @@ PrefabInstance:
     - target: {fileID: 7081117320223416565, guid: dc6d826ccc8307847ae1e6635708d4be,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc6d826ccc8307847ae1e6635708d4be, type: 3}
