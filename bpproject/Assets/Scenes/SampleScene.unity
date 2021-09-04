@@ -761,6 +761,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &183812233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4887889781030982329, guid: 0c64a07940506064c89b0439d3297e96,
+    type: 3}
+  m_PrefabInstance: {fileID: 1885180879}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &189486739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +1060,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &298068340
@@ -1070,7 +1076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1088,7 +1094,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u5566\u5566\u5566\u5566"
 --- !u!222 &298068341
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1626,7 +1632,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: aff231ffad05f3f49b05277f68dab5c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1763,7 +1769,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1885180879}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 183812233}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -4318,7 +4324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 298068340}
-  message: 
+  message: "\u4E86\u4E86\u4E86\u4E86\u4E86\u4E86"
   Image: {fileID: 538336924}
   position: {fileID: 1342819469}
 --- !u!1 &1631937818 stripped
@@ -7135,6 +7141,11 @@ PrefabInstance:
       propertyPath: globalPower
       value: 
       objectReference: {fileID: 1863344554}
+    - target: {fileID: 4105889829731146108, guid: dc6d826ccc8307847ae1e6635708d4be,
+        type: 3}
+      propertyPath: globalExp
+      value: 
+      objectReference: {fileID: 183812233}
     - target: {fileID: 7081117320223416565, guid: dc6d826ccc8307847ae1e6635708d4be,
         type: 3}
       propertyPath: m_AnchorMax.y
