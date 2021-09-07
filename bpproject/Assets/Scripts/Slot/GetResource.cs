@@ -26,6 +26,7 @@ public class GetResource : MonoBehaviour
                 case 5 :imageReward.sprite = Resources.Load<Sprite>("小经验");break;
                 case 6 :imageReward.sprite = Resources.Load<Sprite>("小魔力");break;
                 case 7 :imageReward.sprite = Resources.Load<Sprite>("小经验");break;
+                case 8 :imageReward.sprite = Resources.Load<Sprite>("新小经验");break;
                 default: break;
             }
             rewardResource = reward;
