@@ -34,7 +34,7 @@ public class UnlockControl : MonoBehaviour
         isUnlock = false;
         gameObject.GetComponent<Button>().onClick.AddListener(delegate () { OnClickSelect(); });
         unlock.onClick.AddListener(delegate () { OnClickUnlock(); });
-        scale = 0.2f;
+        scale = 0.1f;
         scaleForPop = 0.8f;
         
     }
