@@ -48,8 +48,6 @@ public class SlotRun : MonoBehaviour
     public int[] rewards;//奖励列表
     public GameObject resource;//弹出的奖励图标
     public GameObject[] rewardsPosition;//奖励列表对应的位置
-    public GameObject[] rewardsLine;//奖励对应的连线
-    public GameObject[] rewardsHead;//奖励对应的连线头部
     public GameObject ExpPosition;
 
     public Text Tilitext;//显示体力
@@ -84,8 +82,21 @@ public class SlotRun : MonoBehaviour
 
     public GameObject simplePortalPurple;
 
-    public GameObject bigEXPLine;
-    public GameObject bigEXPHead;
+    public GameObject rewardsHead1;
+    public GameObject rewardsHead2;
+    public GameObject rewardsHead3;
+
+
+    public GameObject bigEXPHighLight;
+    public GameObject smallEXP1HightLight;
+    public GameObject smallEXP2HightLight;
+    public GameObject waterHightLight;
+    public GameObject windHightLight;
+    public GameObject fireHightLight;
+    public GameObject landHightLight;
+    public GameObject powerHightLight;
+    public GameObject[] rewardsHighLight;
+
 
     // Start is called before the first frame update
     void Start()
@@ -97,8 +108,7 @@ public class SlotRun : MonoBehaviour
         //设置奖励列表以及奖励对应图标
         rewards = new int[8] { 45, 135, 225, 315 ,0,90,180,270};
         rewardsPosition = new GameObject[8] { pointForWater,pointForFire,pointForLand,pointForWind,bigEXP,smallEXP1,power,smallEXP2 };
-        rewardsLine = new GameObject[1] { bigEXPLine };
-        rewardsHead = new GameObject[1] { bigEXPHead };
+        rewardsHighLight = new GameObject[8] { waterHightLight, fireHightLight, landHightLight, windHightLight,bigEXPHighLight, smallEXP1HightLight, powerHightLight, smallEXP2HightLight };
         //小球初始速度
         speedA = 30;
         speedB = 30;
@@ -217,55 +227,119 @@ public class SlotRun : MonoBehaviour
 
     }
 
+    public void GetBigReward(int reward)
+    {
+        Invoke("HighLightClose", 1f);
+        rewardsHead1.SetActive(true);
+        Tween t = rewardsHead1.transform.DOMove(new Vector3(rewardsPosition[reward].transform.position.x, rewardsPosition[reward].transform.position.y), 0.3f).SetEase(Ease.OutCubic);
+        t.OnComplete(
+          () =>
+          {
+              //调用闪烁函数
+              //rewardsPosition[reward].GetComponent<HaloControl>().run = true;
+              showRewardDh(reward, 8);
+
+              rewardsHighLight[reward].SetActive(true);
+              Invoke("RewardsHeadPosReset", 1f);
+          }
+      );
+        WhatReward(reward, 5);
+
+    }
+
     public void GetMiddleReward(int reward)
     {
-        //调用闪烁函数
-        if(!pdTiliAndSmallExp(reward)){
-            rewardsPosition[reward].GetComponent<HaloControl>().run = true;
-            showRewardDh(reward,5);
+        Invoke("HighLightClose", 1f);
+        Invoke("RewardsHeadPosReset", 1.3f);
+        if (!pdTiliAndSmallExp(reward))
+        {
+            rewardsHead1.SetActive(true);
+            
+            Tween t = rewardsHead1.transform.DOMove(new Vector3(rewardsPosition[reward].transform.position.x, rewardsPosition[reward].transform.position.y), 0.3f).SetEase(Ease.OutCubic);
+            t.OnComplete(
+               () =>
+               {
+               //调用闪烁函数
+                   rewardsHighLight[reward].SetActive(true);
+
+                   //rewardsPosition[reward].GetComponent<HaloControl>().run = true;
+                   showRewardDh(reward, 5);
+               }
+           );
+
         }
-        WhatReward(reward,3);
+
+        WhatReward(reward, 3);
+
     }
 
     public void GetSmallReward(int rewardA,int rewardB,int rewardC)
     {
-        Tween t =rewardsHead[0].transform.DOMove(new Vector3(rewardsPosition[4].transform.position.x, rewardsPosition[4].transform.position.y), 2f).SetEase(Ease.OutCubic);
-        t.OnComplete(
+        Invoke("HighLightClose",1f);
+        Invoke("RewardsHeadPosReset", 1f);
+        if (!pdTiliAndSmallExp(rewardA))
+        {
+            rewardsHead1.SetActive(true);
+            Tween t = rewardsHead1.transform.DOMove(new Vector3(rewardsPosition[rewardA].transform.position.x, rewardsPosition[rewardA].transform.position.y), 0.3f).SetEase(Ease.OutCubic);
+            t.OnComplete(
             () =>
             {
+                rewardsHighLight[rewardA].SetActive(true);
                 //调用闪烁函数
-                if (!pdTiliAndSmallExp(rewardA))
-                {
-                    rewardsPosition[rewardA].GetComponent<HaloControl>().run = true;
-                    showRewardDh(rewardA, 3);
-                }
-                if (!pdTiliAndSmallExp(rewardB))
-                {
-                    rewardsPosition[rewardB].GetComponent<HaloControl>().run = true;
-                    showRewardDh(rewardB, 3);
-                }
-                if (!pdTiliAndSmallExp(rewardC))
-                {
-                    rewardsPosition[rewardC].GetComponent<HaloControl>().run = true;
-                    showRewardDh(rewardC, 3);
-                }
-
-                WhatReward(rewardA, 1);
-
-                WhatReward(rewardB, 1);
-
-                WhatReward(rewardC, 1);
+                //rewardsPosition[rewardA].GetComponent<HaloControl>().run = true;
+                showRewardDh(rewardA, 3);
             }
         );
-        
+        }
+        if (!pdTiliAndSmallExp(rewardB))
+        {
+            rewardsHead2.SetActive(true);
+           
+            Tween t = rewardsHead2.transform.DOMove(new Vector3(rewardsPosition[rewardB].transform.position.x, rewardsPosition[rewardB].transform.position.y), 0.3f).SetEase(Ease.OutCubic);
+            t.OnComplete(
+            () =>
+            {
+                rewardsHighLight[rewardB].SetActive(true);
+                //rewardsPosition[rewardB].GetComponent<HaloControl>().run = true;
+                showRewardDh(rewardB, 3);
+            });
+        }
+        if (!pdTiliAndSmallExp(rewardC))
+        {
+            rewardsHead3.SetActive(true);
+           
+            Tween t = rewardsHead3.transform.DOMove(new Vector3(rewardsPosition[rewardC].transform.position.x, rewardsPosition[rewardC].transform.position.y), 0.3f).SetEase(Ease.OutCubic);
+            t.OnComplete(
+            () =>
+            {
+                rewardsHighLight[rewardC].SetActive(true);
+                // rewardsPosition[rewardC].GetComponent<HaloControl>().run = true;
+                showRewardDh(rewardC, 3);
+            }
+        );
+        }
+
+        WhatReward(rewardA, 1);
+        WhatReward(rewardB, 1);
+        WhatReward(rewardC, 1);
     }
 
-    public void GetBigReward(int reward)
+    public void RewardsHeadPosReset()
     {
-        //调用闪烁函数
-        rewardsPosition[reward].GetComponent<HaloControl>().run = true;
-        showRewardDh(reward,8);
-        WhatReward(reward,5);
+        rewardsHead1.transform.position = centerObject.transform.position;
+        rewardsHead2.transform.position = centerObject.transform.position;
+        rewardsHead3.transform.position = centerObject.transform.position;
+        rewardsHead1.SetActive(false);
+        rewardsHead2.SetActive(false);
+        rewardsHead3.SetActive(false);
+    }
+
+    public void HighLightClose()
+    {
+        for(int i = 0; i < 8; i++)
+        {
+            rewardsHighLight[i].SetActive(false);
+        }
     }
 
     public void SlotGo()
