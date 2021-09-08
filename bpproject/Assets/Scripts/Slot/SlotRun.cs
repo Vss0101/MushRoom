@@ -80,6 +80,7 @@ public class SlotRun : MonoBehaviour
 
     public int SlotTime = 0;// 保底转到大奖次数
 
+    public GameObject simplePortalPurple;
 
     // Start is called before the first frame update
     void Start()
@@ -114,6 +115,7 @@ public class SlotRun : MonoBehaviour
         expText.text = "✖" + exp;
 
         run.onClick.AddListener(delegate () { ClickChangeP(); });
+        simplePortalPurple.GetComponent<ParticleSystem>().Stop();
     }
 
     public void ClickChangeP(){
@@ -255,7 +257,8 @@ public class SlotRun : MonoBehaviour
         rewardA = GetRandom();
         rewardB = GetRandom();
         rewardC = GetRandom();
-        //确定小球停留位置，并设置其动画效果
+        simplePortalPurple.GetComponent<ParticleSystem>().Play();
+       //确定小球停留位置，并设置其动画效果
         Tween t = pointC.transform.DORotate(new Vector3(0, 0, rewards[rewardA] - pointC.transform.eulerAngles.z - 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
         t.OnComplete(
             () =>
@@ -263,12 +266,14 @@ public class SlotRun : MonoBehaviour
                 //等动画播完后调用拿奖函数
                 GetRewards(rewardA, rewardB, rewardC);
                 //并让小球继续转动
+                
                 Invoke("ReverseStopFlag", 0.5f);
             }
         );
         pointA.transform.DORotate(new Vector3(0, 0, rewards[rewardB] - pointA.transform.eulerAngles.z - 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
         pointB.transform.DORotate(new Vector3(0, 0, rewards[rewardC] - pointB.transform.eulerAngles.z - 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
     }
+
 
     // Update is called once per frame
     void Update()
