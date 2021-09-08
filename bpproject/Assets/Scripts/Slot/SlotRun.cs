@@ -48,6 +48,8 @@ public class SlotRun : MonoBehaviour
     public int[] rewards;//奖励列表
     public GameObject resource;//弹出的奖励图标
     public GameObject[] rewardsPosition;//奖励列表对应的位置
+    public GameObject[] rewardsLine;//奖励对应的连线
+    public GameObject[] rewardsHead;//奖励对应的连线头部
     public GameObject ExpPosition;
 
     public Text Tilitext;//显示体力
@@ -82,6 +84,9 @@ public class SlotRun : MonoBehaviour
 
     public GameObject simplePortalPurple;
 
+    public GameObject bigEXPLine;
+    public GameObject bigEXPHead;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,6 +97,8 @@ public class SlotRun : MonoBehaviour
         //设置奖励列表以及奖励对应图标
         rewards = new int[8] { 45, 135, 225, 315 ,0,90,180,270};
         rewardsPosition = new GameObject[8] { pointForWater,pointForFire,pointForLand,pointForWind,bigEXP,smallEXP1,power,smallEXP2 };
+        rewardsLine = new GameObject[1] { bigEXPLine };
+        rewardsHead = new GameObject[1] { bigEXPHead };
         //小球初始速度
         speedA = 30;
         speedB = 30;
@@ -222,25 +229,35 @@ public class SlotRun : MonoBehaviour
 
     public void GetSmallReward(int rewardA,int rewardB,int rewardC)
     {
-        //调用闪烁函数
-        if(!pdTiliAndSmallExp(rewardA)){
-            rewardsPosition[rewardA].GetComponent<HaloControl>().run = true;
-            showRewardDh(rewardA,3);
-        }
-        if(!pdTiliAndSmallExp(rewardB)){
-            rewardsPosition[rewardB].GetComponent<HaloControl>().run = true;
-            showRewardDh(rewardB,3);
-        }
-        if(!pdTiliAndSmallExp(rewardC)){
-            rewardsPosition[rewardC].GetComponent<HaloControl>().run = true;
-            showRewardDh(rewardC,3);
-        }
+        Tween t =rewardsHead[0].transform.DOMove(new Vector3(rewardsPosition[4].transform.position.x, rewardsPosition[4].transform.position.y), 2f).SetEase(Ease.OutCubic);
+        t.OnComplete(
+            () =>
+            {
+                //调用闪烁函数
+                if (!pdTiliAndSmallExp(rewardA))
+                {
+                    rewardsPosition[rewardA].GetComponent<HaloControl>().run = true;
+                    showRewardDh(rewardA, 3);
+                }
+                if (!pdTiliAndSmallExp(rewardB))
+                {
+                    rewardsPosition[rewardB].GetComponent<HaloControl>().run = true;
+                    showRewardDh(rewardB, 3);
+                }
+                if (!pdTiliAndSmallExp(rewardC))
+                {
+                    rewardsPosition[rewardC].GetComponent<HaloControl>().run = true;
+                    showRewardDh(rewardC, 3);
+                }
 
-        WhatReward(rewardA,1);
+                WhatReward(rewardA, 1);
 
-        WhatReward(rewardB,1);
+                WhatReward(rewardB, 1);
 
-        WhatReward(rewardC,1);
+                WhatReward(rewardC, 1);
+            }
+        );
+        
     }
 
     public void GetBigReward(int reward)
@@ -267,7 +284,7 @@ public class SlotRun : MonoBehaviour
                 GetRewards(rewardA, rewardB, rewardC);
                 //并让小球继续转动
                 
-                Invoke("ReverseStopFlag", 0.5f);
+                Invoke("ReverseStopFlag", 1f);
             }
         );
         pointA.transform.DORotate(new Vector3(0, 0, rewards[rewardB] - pointA.transform.eulerAngles.z - 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
