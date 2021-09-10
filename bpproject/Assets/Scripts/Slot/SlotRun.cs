@@ -85,6 +85,9 @@ public class SlotRun : MonoBehaviour
     public GameObject rewardsHead1;
     public GameObject rewardsHead2;
     public GameObject rewardsHead3;
+    public GameObject trail1;
+    public GameObject trail2;
+    public GameObject trail3;
 
 
     public GameObject bigEXPHighLight;
@@ -145,7 +148,7 @@ public class SlotRun : MonoBehaviour
     {
         run.image.sprite = Resources.Load<Sprite>("开始按钮背景");
         if(tili<=0){
-            tip.GetMessage("没有体力啦");
+            tip.GetMessage("Power Not Enough");
         }
         else{
             if(tili - 1 * betNum<=0){
@@ -167,22 +170,26 @@ public class SlotRun : MonoBehaviour
 
     public void BetOnClick(){
         switch(betNum){
-            case 1: if(tili<=10){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
-            else{betNum = 3;}
+            case 1: if(tili<=10){tip.GetMessage("The Maxinum Multiple Is "+betNum.ToString() + " Times");betNum = 1;}
+            else{
+                    betNum = 3;
+                }
             break;
-            case 3: if(tili<=50){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
-            else{betNum = 5;}
+            case 3: if(tili<=50){tip.GetMessage("The Maxinum Multiple Is " + betNum.ToString() + " Times");betNum = 1;}
+            else{
+                    betNum = 5;
+                }
             break;
-            case 5: if(tili<=200){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
+            case 5: if(tili<=200){tip.GetMessage("The Maxinum Multiple Is " + betNum.ToString() + " Times");betNum = 1;}
             else{betNum = 10;}
             break;
-            case 10: if(tili<=500){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
+            case 10: if(tili<=500){tip.GetMessage("The Maxinum Multiple Is " + betNum.ToString() + " Times");betNum = 1;}
             else{betNum = 20;}
             break;
-            case 20: if(tili<=1000){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
+            case 20: if(tili<=1000){tip.GetMessage("The Maxinum Multiple Is " + betNum.ToString() + " Times");betNum = 1;}
             else{betNum = 50;}
             break;
-            case 50: if(tili<=2000){tip.GetMessage("最大倍数为"+betNum.ToString());betNum = 1;}
+            case 50: if(tili<=2000){tip.GetMessage("The Maxinum Multiple Is " + betNum.ToString() + " Times");betNum = 1;}
             else{betNum = 100;}
             break;
             case 100: betNum = 1;break;
@@ -193,13 +200,7 @@ public class SlotRun : MonoBehaviour
 
     public int GetRandom()
     {
-        if(SlotTime==10){
-            SlotTime = 0;
-            return 6;
-        }
-        else{
-            return Random.Range(0, 7);
-        }
+        return Random.Range(0, 8);
     }
 
     public void ReverseStopFlag()
@@ -230,6 +231,7 @@ public class SlotRun : MonoBehaviour
     public void GetBigReward(int reward)
     {
         Invoke("HighLightClose", 1f);
+        Invoke("RewardsHeadPosReset", 1f);
         rewardsHead1.SetActive(true);
         Tween t = rewardsHead1.transform.DOMove(new Vector3(rewardsPosition[reward].transform.position.x, rewardsPosition[reward].transform.position.y), 0.3f).SetEase(Ease.OutCubic);
         t.OnComplete(
@@ -238,9 +240,8 @@ public class SlotRun : MonoBehaviour
               //调用闪烁函数
               //rewardsPosition[reward].GetComponent<HaloControl>().run = true;
               showRewardDh(reward, 8);
-
               rewardsHighLight[reward].SetActive(true);
-              Invoke("RewardsHeadPosReset", 1f);
+
           }
       );
         WhatReward(reward, 5);
@@ -250,8 +251,8 @@ public class SlotRun : MonoBehaviour
     public void GetMiddleReward(int reward)
     {
         Invoke("HighLightClose", 1f);
-        Invoke("RewardsHeadPosReset", 1.3f);
-        if (!pdTiliAndSmallExp(reward))
+        Invoke("RewardsHeadPosReset", 1f);
+        if (!pdTiliAndBigExp(reward))
         {
             rewardsHead1.SetActive(true);
             
@@ -277,7 +278,7 @@ public class SlotRun : MonoBehaviour
     {
         Invoke("HighLightClose",1f);
         Invoke("RewardsHeadPosReset", 1f);
-        if (!pdTiliAndSmallExp(rewardA))
+        if (!pdTiliAndBigExp(rewardA))
         {
             rewardsHead1.SetActive(true);
             Tween t = rewardsHead1.transform.DOMove(new Vector3(rewardsPosition[rewardA].transform.position.x, rewardsPosition[rewardA].transform.position.y), 0.3f).SetEase(Ease.OutCubic);
@@ -291,7 +292,7 @@ public class SlotRun : MonoBehaviour
             }
         );
         }
-        if (!pdTiliAndSmallExp(rewardB))
+        if (!pdTiliAndBigExp(rewardB))
         {
             rewardsHead2.SetActive(true);
            
@@ -304,7 +305,7 @@ public class SlotRun : MonoBehaviour
                 showRewardDh(rewardB, 3);
             });
         }
-        if (!pdTiliAndSmallExp(rewardC))
+        if (!pdTiliAndBigExp(rewardC))
         {
             rewardsHead3.SetActive(true);
            
@@ -348,6 +349,14 @@ public class SlotRun : MonoBehaviour
         rewardA = GetRandom();
         rewardB = GetRandom();
         rewardC = GetRandom();
+
+        if(SlotTime == 5)
+        {
+            SlotTime = 0;
+            rewardB = rewardA;
+            rewardC = rewardA;
+        }
+
         simplePortalPurple.GetComponent<ParticleSystem>().Play();
        //确定小球停留位置，并设置其动画效果
         Tween t = pointC.transform.DORotate(new Vector3(0, 0, rewards[rewardA] - pointC.transform.eulerAngles.z - 360 * 2), time, RotateMode.LocalAxisAdd).SetEase(Ease.OutQuad);
@@ -397,26 +406,24 @@ public class SlotRun : MonoBehaviour
         //获得四元素
         switch (reward)
         {
-            case 0 : Water = int.Parse(globalWaterRsData.GetComponent<Text>().text) + betNum * 10*grade;globalWaterRsData.GetComponent<Text>().text = Water.ToString();break;
-            case 1 : Fire = int.Parse(globalFireRsData.GetComponent<Text>().text) + betNum * 10*grade;globalFireRsData.GetComponent<Text>().text = Fire.ToString();break;
-            case 2 : Land = int.Parse(globalLandRsData.GetComponent<Text>().text) + betNum * 10*grade;globalLandRsData.GetComponent<Text>().text = Land.ToString();break;
-            case 3 : Wind = int.Parse(globalWindRsData.GetComponent<Text>().text) + betNum * 10*grade;globalWindRsData.GetComponent<Text>().text = Wind.ToString();break;
-            case 4 : if(grade == 1){
-                exp = exp + 300;
+            case 0 : Water = int.Parse(globalWaterRsData.GetComponent<Text>().text) + betNum * 100*grade;globalWaterRsData.GetComponent<Text>().text = Water.ToString();break;
+            case 1 : Fire = int.Parse(globalFireRsData.GetComponent<Text>().text) + betNum * 100*grade;globalFireRsData.GetComponent<Text>().text = Fire.ToString();break;
+            case 2 : Land = int.Parse(globalLandRsData.GetComponent<Text>().text) + betNum * 100*grade;globalLandRsData.GetComponent<Text>().text = Land.ToString();break;
+            case 3 : Wind = int.Parse(globalWindRsData.GetComponent<Text>().text) + betNum * 100*grade;globalWindRsData.GetComponent<Text>().text = Wind.ToString();break;
+            case 4 :
+                if (grade == 5)
+                {
+                    exp = exp + 2000*betNum;
+                    changeExp = true;
+                }
+                break;
+
+               // 大经验
+            case 5:
+            case 7:
+                exp = exp + grade * 100*betNum;
                 changeExp = true;
-            }
-            else if(grade==3){
-                exp = exp + 900;
-                changeExp = true;
-            }
-            else{
-                exp = exp + 2000;
-                changeExp = true;
-            }break;// 大经验
-            case 5 : if(grade == 5){
-                exp = exp + 500;
-                changeExp = true;
-            }break;// 小经验
+                break;// 小经验
             case 6 : if(grade == 5){
                 tili = tili + betNum * 10;
                 changePower = true;
@@ -425,16 +432,12 @@ public class SlotRun : MonoBehaviour
                 else{
                     break;
                 }
-            case 7 : if(grade == 5){
-                exp = exp + 500;
-                changeExp = true;
-            }break;
             default: break;
         }
     }
 
-    bool pdTiliAndSmallExp(int reward){
-        if((reward == 6 || reward == 5)||reward == 7){
+    bool pdTiliAndBigExp(int reward){
+        if(reward == 6 || reward == 4){
             return true;
         }
         else{

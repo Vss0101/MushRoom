@@ -12,17 +12,24 @@ public class Message : MonoBehaviour
     public string message;
     public GameObject Image;
     public GameObject position;
+    public bool isDown;
 
     public void GetMessage(string str){
         message = str;
         text.text = message;
-        Image.transform.DOMove(new Vector3(gameObject.transform.position.x, position.transform.position.y, 0), 0.8f); 
-        Invoke("GoBack",2);
+        if (isDown)
+        {
+            isDown = false;
+            Image.transform.DOMove(new Vector3(gameObject.transform.position.x, position.transform.position.y, 0), 0.8f);
+            Invoke("GoBack",2f);
+        }
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        isDown = true;
     }
 
     // Update is called once per frame
@@ -32,7 +39,13 @@ public class Message : MonoBehaviour
     }
 
     void GoBack(){
-        Image.transform.DOMove(new Vector3(gameObject.transform.position.x, Image.transform.position.y + 200, 0), 0.8f);
+        Tween t = Image.transform.DOMove(new Vector3(gameObject.transform.position.x, Image.transform.position.y + 200, 0), 0.8f);
+        t.OnComplete(
+          () =>
+          {
+              isDown = true;
+          }
+      );
     }
 
 

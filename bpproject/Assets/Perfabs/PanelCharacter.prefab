@@ -1343,7 +1343,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d279d579da856429bf48a582eaa35c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goBack: {fileID: 9018232373266979784}
+  slider: {fileID: 0}
+  level: 0
+  levelUp: {fileID: 0}
+  text: {fileID: 0}
+  levelText: {fileID: 0}
+  tips: {fileID: 0}
+  globalEXP: {fileID: 0}
+  resource: {fileID: 0}
+  EXPImage: {fileID: 0}
+  isRun: 0
+  EXPCount: {fileID: 0}
+  isDown: 0
 --- !u!1 &7628762211895305778
 GameObject:
   m_ObjectHideFlags: 0
