@@ -84,11 +84,11 @@ public class ScreenTapFX : MonoBehaviour
         fx.name = Time.time.ToString();
         activatedFXList.Add(fx);
 
-        RectTransform fxRectTrans = fx.GetComponent<RectTransform>();
+        Transform fxRectTrans = fx.GetComponent<Transform>();
         Vector2 fxLocalPos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(fxContainer, tapPos, fxRenderCamera, out fxLocalPos);
         fxRectTrans.SetParent(fxContainer);
-        fxRectTrans.anchoredPosition3D = fxLocalPos;
+        fxRectTrans.localPosition = fxLocalPos;
         fx.SetActive(true);
         if (!AudioSource.isPlaying)
         {
