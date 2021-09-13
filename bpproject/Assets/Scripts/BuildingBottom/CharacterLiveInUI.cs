@@ -44,8 +44,10 @@ public class CharacterLiveInUI : MonoBehaviour
         left.GetComponent<Button>().onClick.AddListener(delegate () { OnClickGoLeft(); });
         rightCanvas = right.GetComponent<CanvasGroup>();
         leftCanvas = left.GetComponent<CanvasGroup>();
+        CheckEnable();
 
-        
+
+
     }
 
     public void OnClickSelectC1()

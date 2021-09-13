@@ -13,6 +13,7 @@ TagManager:
   - UI
   - 
   - 
+  - View
   - 
   - 
   - 
@@ -34,10 +35,15 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Top
   - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FX
+    uniqueID: 496650513
+    locked: 0
+  - name: New Layer
+    uniqueID: 264812791
     locked: 0
